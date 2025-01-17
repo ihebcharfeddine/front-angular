@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class EventService {
-  private baseUrl: string = 'http://localhost:3001/events';
+  private baseUrl: string = 'http://localhost:9000/EVENT-SERVICE/events';
 
   constructor(private http: HttpClient) {}
 
@@ -15,19 +15,22 @@ export class EventService {
     return this.http.get<Event[]>(this.baseUrl);
   }
 
-  getEventByID(id: string): Observable<Event> {
+  getEventByID(id: number): Observable<Event> {
     return this.http.get<Event>(`${this.baseUrl}/${id}`);
   }
 
-  addEvent(e: Event): Observable<void> {
-    return this.http.post<void>(this.baseUrl, e);
+  addEvent(event: Event): Observable<void> {
+    return this.http.post<void>(this.baseUrl, event);
   }
 
-  deleteEvent(id: string): Observable<void> {
+  deleteEvent(id: number): Observable<void> {
+    console.log('Making DELETE request for event ID:', id);
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+  
 
-  updateEvent(id: string, m: Event): Observable<void> {
-    return this.http.put<void>(`${this.baseUrl}/${id}`, m);
+  updateEvent(id: number, event: Event): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/${id}`, event);
   }
 }
+
