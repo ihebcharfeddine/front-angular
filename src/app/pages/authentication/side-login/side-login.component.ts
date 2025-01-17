@@ -23,7 +23,9 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './side-login.component.html',
 })
 export class AppSideLoginComponent {
-  constructor(private router: Router) { }
+  constructor(private router:Router){
+
+  }
 
   form = new FormGroup({
     uname: new FormControl('', [Validators.required, Validators.minLength(6)]),
