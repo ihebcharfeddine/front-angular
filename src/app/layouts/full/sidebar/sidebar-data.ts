@@ -4,7 +4,6 @@ export const navItems: NavItem[] = [
   {
     navCap: 'Home',
   },
-
   {
     displayName: 'Dashboard',
     iconName: 'layout-dashboard',
@@ -12,7 +11,7 @@ export const navItems: NavItem[] = [
     route: '/dashboard',
   },
   {
-    navCap: 'Ui Components',
+    navCap: 'Managments',
   },
   {
     displayName: 'Students',
@@ -44,7 +43,7 @@ export const navItems: NavItem[] = [
     bgcolor: 'primary',
     route: '/ui-components/tools',
   },
-  {
+  /* {
     displayName: 'Badge',
     iconName: 'rosette',
     bgcolor: 'accent',
@@ -104,5 +103,5 @@ export const navItems: NavItem[] = [
     iconName: 'aperture',
     bgcolor: 'error',
     route: '/extra/sample-page',
-  },
+  }, */
 ];

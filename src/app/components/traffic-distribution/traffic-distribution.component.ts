@@ -39,18 +39,20 @@ export interface trafficdistributionChart {
 @Component({
   selector: 'app-traffic-distribution',
   standalone: true,
-  imports: [MaterialModule, TablerIconsModule, MatButtonModule, NgApexchartsModule],
+  imports: [
+    MaterialModule,
+    TablerIconsModule,
+    MatButtonModule,
+    NgApexchartsModule,
+  ],
   templateUrl: './traffic-distribution.component.html',
 })
 export class AppTrafficDistributionComponent {
-
   @ViewChild('chart') chart: ChartComponent = Object.create(null);
 
   public trafficdistributionChart!: Partial<trafficdistributionChart> | any;
 
-
   constructor() {
-
     this.trafficdistributionChart = {
       series: [5368, 3500, 4106],
       labels: ['5368', 'Refferal Traffic', 'Oragnic Traffic'],
@@ -108,6 +110,5 @@ export class AppTrafficDistributionComponent {
         enabled: false,
       },
     };
-
   }
 }
