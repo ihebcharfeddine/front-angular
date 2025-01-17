@@ -1,4 +1,4 @@
 export interface Membre_Publication {
-  publication_id: String;
-  auteur_id: String;
+  publication_id:String,
+  auteur_id:String,
 }

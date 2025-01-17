@@ -67,8 +67,8 @@ export class MemberService {
     return this.httpClient.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-  affecterOutil(memberOutil: Membre_Outil): Observable<void> {
-    return this.httpClient.post<void>(`http://localhost:9000/MEMBRE-SERVICE/outil`, memberOutil);
+  affecterOutil(memberOutil:Membre_Outil):Observable<void>{
+    return this.httpClient.post<void>("http://localhost:9000/MEMBRE-SERVICE/outil" ,memberOutil) ;
   }
 
   affecterPublication(memberPublication: Membre_Publication): Observable<void> {
@@ -78,6 +78,7 @@ export class MemberService {
   affecterEvent(memberEvent: Membre_Event): Observable<void> {
     return this.httpClient.post<void>(`http://localhost:9000/MEMBRE-SERVICE/event`, memberEvent);
   }
+
 
   tabpub: number[] = [];
 

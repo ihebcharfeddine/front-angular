@@ -13,7 +13,7 @@ import { ToolService } from 'src/services/tool.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
-import { Membre_Tool } from 'src/model/Member_Tool';
+import { Membre_Outil } from 'src/model/Membre_Outil';
 
 @Component({
   selector: 'app-affect-tool-to-member',
@@ -63,21 +63,29 @@ export class AffectToolToMemberComponent implements OnInit {
     if (this.form.valid) {
       const memberId = this.form.value.memberId;
       const toolId = this.form.value.toolId;
-
-      const memberOutil: Membre_Tool = {
-        member_id: memberId,
-        tool_id: toolId,
+  
+      const memberOutil: Membre_Outil = {
+        membre_id: memberId,
+        outil_id: toolId,
       };
-
-      this.memberService.affecterOutil(memberOutil).subscribe(() => {
-        console.log('Tool affected to member successfully!');
-        this.router.navigate(['/ui-component/tools']);
-      });
+  
+      console.log('Payload:', memberOutil);
+  
+      this.memberService.affecterOutil(memberOutil).subscribe(
+        () => {
+          console.log('Tool affected to member successfully!');
+          this.router.navigate(['/ui-components/tools']);
+        },
+        (error) => {
+          console.error('Error:', error);
+        }
+      );
     }
   }
+  
 
   close(): void {
-    this.router.navigate(['/ui-component/tools']).then(() => {
+    this.router.navigate(['/ui-components/tools']).then(() => {
       console.log('Navigated back to tools page');
     });
   }
