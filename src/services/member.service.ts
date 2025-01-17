@@ -10,7 +10,7 @@ import { Membre_Tool } from 'src/model/Member_Tool';
   providedIn: 'root',
 })
 export class MemberService {
-  private baseUrl: string = 'http://localhost:3001/members';
+  private baseUrl: string = 'http://localhost:9000/MEMBRE-SERVICE/membres';
   students: Member[] = [];
   teachers: Member[] = [];
 
