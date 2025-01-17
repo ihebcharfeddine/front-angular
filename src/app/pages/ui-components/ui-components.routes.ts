@@ -56,7 +56,7 @@ export const UiComponentsRoutes: Routes = [
         component: TeacherFormComponent,
       },
       {
-        path: 'students/consult/:id/edit',
+        path: 'students/consult/:id',
         component: DetailPageComponent,
       },
       {
