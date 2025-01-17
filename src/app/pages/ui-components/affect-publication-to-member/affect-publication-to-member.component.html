@@ -1,0 +1,38 @@
+<mat-card class="b-1 shadow-none">
+    <mat-card-header>
+        <mat-card-title>Affect Publication to Member</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="b-t-1">
+        <form [formGroup]="form" (ngSubmit)="save()">
+            <!-- Member Selection -->
+            <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Member</mat-label>
+                <mat-select formControlName="memberId">
+                    <mat-option *ngFor="let member of dataMembers" [value]="member.id">
+                        {{ member.nom }} {{ member.prenom }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- Tool Selection -->
+            <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Publication</mat-label>
+                <mat-select formControlName="publicationId">
+                    <mat-option *ngFor="let publication of dataPubs" [value]="publication.id">
+                        {{ publication.titre }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- Buttons -->
+            <div fxLayoutAlign="end">
+                <button mat-button class="mat-raised-button" (click)="close()">
+                    Cancel
+                </button>
+
+                <button mat-flat-button color="primary" type="submit">Save</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

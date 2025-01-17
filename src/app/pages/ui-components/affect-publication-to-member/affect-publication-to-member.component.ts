@@ -6,30 +6,33 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Member } from 'src/model/Member';
-import { Tool } from 'src/model/Tool';
+
 import { MaterialModule } from '../../../material.module';
 import { MemberService } from 'src/services/member.service';
-import { ToolService } from 'src/services/tool.service';
+
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { Membre_Outil } from 'src/model/Membre_Outil';
+import { PublicationService } from 'src/services/publication.service';
+import { Publication } from 'src/model/Publication';
+import { Membre_Publication } from 'src/model/Membre_Publication';
 
 @Component({
   selector: 'app-affect-tool-to-member',
-  templateUrl: './affect-tool-to-member.component.html',
-  styleUrls: ['./affect-tool-to-member.component.scss'],
+  templateUrl: './affect-publication-to-member.component.html',
+  styleUrls: ['./affect-publication-to-member.component.scss'],
   standalone: true,
   imports: [MaterialModule, ReactiveFormsModule, CommonModule, RouterModule],
 })
-export class AffectToolToMemberComponent implements OnInit {
+export class AffectPublicationToMemberComponent {
   form!: FormGroup;
   dataMembers: Member[] = [];
-  dataTools: Tool[] = [];
+  dataPubs: Publication[] = [];
 
   constructor(
     private memberService: MemberService,
-    private toolService: ToolService,
+    private publicationService: PublicationService,
     private fb: FormBuilder,
     private router: Router
   ) {}
@@ -41,7 +44,7 @@ export class AffectToolToMemberComponent implements OnInit {
 
   initializeForm(): void {
     this.form = this.fb.group({
-      toolId: new FormControl(null),
+      publicationId: new FormControl(null),
       memberId: new FormControl(null),
     });
   }
@@ -51,27 +54,27 @@ export class AffectToolToMemberComponent implements OnInit {
       this.dataMembers = members;
     });
 
-    this.toolService.getAllTools().subscribe((tools) => {
-      this.dataTools = tools;
+    this.publicationService.getAllPublications().subscribe((publications) => {
+      this.dataPubs = publications;
     });
   }
 
   save(): void {
     if (this.form.valid) {
       const memberId = this.form.value.memberId;
-      const toolId = this.form.value.toolId;
+      const pubId = this.form.value.PublicationId;
 
-      const memberOutil: Membre_Outil = {
-        membre_id: memberId,
-        outil_id: toolId,
+      const memberPub: Membre_Publication = {
+        auteur_id: memberId,
+        publication_id: pubId,
       };
 
-      console.log('Payload:', memberOutil);
+      console.log('Payload:', memberPub);
 
-      this.memberService.affecterOutil(memberOutil).subscribe(
+      this.memberService.affecterPublication(memberPub).subscribe(
         () => {
-          console.log('Tool affected to member successfully!');
-          this.router.navigate(['/ui-components/tools']);
+          console.log('Publication affected to auteur successfully!');
+          this.router.navigate(['/ui-components/publications']);
         },
         (error) => {
           console.error('Error:', error);
@@ -81,8 +84,8 @@ export class AffectToolToMemberComponent implements OnInit {
   }
 
   close(): void {
-    this.router.navigate(['/ui-components/tools']).then(() => {
-      console.log('Navigated back to tools page');
+    this.router.navigate(['/ui-components/publications']).then(() => {
+      console.log('Navigated back to publications page');
     });
   }
 }

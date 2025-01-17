@@ -44,25 +44,27 @@ export class EventListComponent implements OnInit {
   addEvent() {
     this.router.navigate(['/ui-components/events/create']);
   }
-
+  OpenDialog() {
+    this.router.navigate(['/ui-components/events/affEvt']);
+  }
   deleteEvent(id: number) {
     console.log('Delete event triggered for ID:', id);
-  
+
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '350px',
       data: { message: 'Are you sure you want to delete this event?' },
     });
-  
+
     dialogRef.afterClosed().subscribe((confirmed) => {
       console.log('Dialog closed, user confirmation:', confirmed);
-  
+
       if (confirmed) {
         console.log('User confirmed delete action for ID:', id);
-  
+
         this.eventService.deleteEvent(id).subscribe(
           () => {
             console.log('Event deleted successfully, refreshing events list.');
-  
+
             this.eventService.getAllEvents().subscribe(
               (data) => {
                 console.log('Events fetched after deletion:', data);
@@ -81,8 +83,6 @@ export class EventListComponent implements OnInit {
         console.log('User canceled delete action for ID:', id);
       }
     });
-  
-  
 
     dialogRef.afterClosed().subscribe((confirmed) => {
       if (confirmed) {

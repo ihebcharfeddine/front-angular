@@ -51,7 +51,9 @@ export class PublicationListComponent {
   addPublication() {
     this.router.navigate(['/ui-components/publications/create']);
   }
-
+  OpenDialog() {
+    this.router.navigate(['/ui-components/publications/affPub']);
+  }
   delete(id: number) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '350px',

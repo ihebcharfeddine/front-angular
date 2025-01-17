@@ -6,30 +6,33 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Member } from 'src/model/Member';
-import { Tool } from 'src/model/Tool';
+
 import { MaterialModule } from '../../../material.module';
 import { MemberService } from 'src/services/member.service';
-import { ToolService } from 'src/services/tool.service';
+
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
-import { Membre_Outil } from 'src/model/Membre_Outil';
+import { Membre_Event } from 'src/model/Member_Event';
+import { EventService } from 'src/services/event.service';
+import { Event } from 'src/model/Event';
+import { Membre_Publication } from 'src/model/Membre_Publication';
 
 @Component({
   selector: 'app-affect-tool-to-member',
-  templateUrl: './affect-tool-to-member.component.html',
-  styleUrls: ['./affect-tool-to-member.component.scss'],
+  templateUrl: './affect-event-to-member.component.html',
+  styleUrls: ['./affect-event-to-member.component.scss'],
   standalone: true,
   imports: [MaterialModule, ReactiveFormsModule, CommonModule, RouterModule],
 })
-export class AffectToolToMemberComponent implements OnInit {
+export class AffectEventToMemberComponent {
   form!: FormGroup;
   dataMembers: Member[] = [];
-  dataTools: Tool[] = [];
+  dataEvents: Event[] = [];
 
   constructor(
     private memberService: MemberService,
-    private toolService: ToolService,
+    private eventService: EventService,
     private fb: FormBuilder,
     private router: Router
   ) {}
@@ -41,7 +44,7 @@ export class AffectToolToMemberComponent implements OnInit {
 
   initializeForm(): void {
     this.form = this.fb.group({
-      toolId: new FormControl(null),
+      eventId: new FormControl(null),
       memberId: new FormControl(null),
     });
   }
@@ -51,27 +54,27 @@ export class AffectToolToMemberComponent implements OnInit {
       this.dataMembers = members;
     });
 
-    this.toolService.getAllTools().subscribe((tools) => {
-      this.dataTools = tools;
+    this.eventService.getAllEvents().subscribe((events) => {
+      this.dataEvents = events;
     });
   }
 
   save(): void {
     if (this.form.valid) {
       const memberId = this.form.value.memberId;
-      const toolId = this.form.value.toolId;
+      const eventId = this.form.value.eventId;
 
-      const memberOutil: Membre_Outil = {
-        membre_id: memberId,
-        outil_id: toolId,
+      const memberEvent: Membre_Event = {
+        participant_id: memberId,
+        event_id: eventId,
       };
 
-      console.log('Payload:', memberOutil);
+      console.log('Payload:', memberEvent);
 
-      this.memberService.affecterOutil(memberOutil).subscribe(
+      this.memberService.affecterEvent(memberEvent).subscribe(
         () => {
-          console.log('Tool affected to member successfully!');
-          this.router.navigate(['/ui-components/tools']);
+          console.log('Event affected to auteur successfully!');
+          this.router.navigate(['/ui-components/events']);
         },
         (error) => {
           console.error('Error:', error);
@@ -81,8 +84,8 @@ export class AffectToolToMemberComponent implements OnInit {
   }
 
   close(): void {
-    this.router.navigate(['/ui-components/tools']).then(() => {
-      console.log('Navigated back to tools page');
+    this.router.navigate(['/ui-components/events']).then(() => {
+      console.log('Navigated back to Events page');
     });
   }
 }
