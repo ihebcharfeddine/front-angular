@@ -1,0 +1,112 @@
+<mat-card class="cardWithShadow">
+    <mat-card-header class="p-t-24">
+        <div class="d-flex align-items-center justify-content-between w-100">
+            <mat-card-title>Member Details</mat-card-title>
+        </div>
+    </mat-card-header>
+
+    <mat-card-content class="p-t-0">
+        <!-- Member Information -->
+        <div fxLayout="row" fxLayoutAlign="space-around center" class="p-b-16">
+            <div fxLayout="row">
+                <h2>CIN:</h2>
+                <h2 class="m-l-8">{{ dataSource.cin }}</h2>
+            </div>
+            <div fxLayout="row">
+                <h2>Nom:</h2>
+                <h2 class="m-l-8">{{ dataSource.nom }} {{ dataSource.prenom }}</h2>
+            </div>
+        </div>
+
+        <!-- Events Table -->
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title> Events </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="table-responsive">
+                <mat-table [dataSource]="dataEvent2" class="w-100 mat-elevation-z8">
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> ID </th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="titre">
+                        <th mat-header-cell *matHeaderCellDef> Title </th>
+                        <td mat-cell *matCellDef="let element"> {{element.titre}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="DateDebut">
+                        <th mat-header-cell *matHeaderCellDef> Start Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.dateDebut }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="DateFin">
+                        <th mat-header-cell *matHeaderCellDef> End Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.dateFin }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="lieu">
+                        <th mat-header-cell *matHeaderCellDef> Location </th>
+                        <td mat-cell *matCellDef="let element"> {{element.lieu}} </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsEvent"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsEvent;"></tr>
+                </mat-table>
+            </div>
+        </mat-expansion-panel>
+
+        <!-- Tools Table -->
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title> Tools </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="table-responsive">
+                <mat-table [dataSource]="dataTool2" class="w-100 mat-elevation-z8">
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> ID </th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Source">
+                        <th mat-header-cell *matHeaderCellDef> Source </th>
+                        <td mat-cell *matCellDef="let element"> {{element.source}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Date">
+                        <th mat-header-cell *matHeaderCellDef> Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.date }} </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsTools"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsTools;"></tr>
+                </mat-table>
+            </div>
+        </mat-expansion-panel>
+
+        <!-- Articles Table -->
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title> Articles </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="table-responsive">
+                <mat-table [dataSource]="dataArticle2" class="w-100 mat-elevation-z8">
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> ID </th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="titre">
+                        <th mat-header-cell *matHeaderCellDef> Title </th>
+                        <td mat-cell *matCellDef="let element"> {{element.titre}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Date">
+                        <th mat-header-cell *matHeaderCellDef> Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.date }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef> Type </th>
+                        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="sourcePdf">
+                        <th mat-header-cell *matHeaderCellDef> PDF Source </th>
+                        <td mat-cell *matCellDef="let element"> {{element.sourcePdf}} </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsArticle"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsArticle;"></tr>
+                </mat-table>
+            </div>
+        </mat-expansion-panel>
+    </mat-card-content>
+</mat-card>

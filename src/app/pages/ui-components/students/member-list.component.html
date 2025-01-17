@@ -2,16 +2,8 @@
   <mat-card-header class="p-t-24">
     <div class="d-flex align-items-center justify-content-between w-100">
       <mat-card-title>Student List</mat-card-title>
-      <button
-        mat-flat-button
-        color="primary"
-        #tooltip="matTooltip"
-        matTooltip="Add a member here"
-        matTooltipPosition="right"
-        class="ml-auto m-l-8"
-        matTooltipHideDelay="100000"
-        (click)="addMember()"
-      >
+      <button mat-flat-button color="primary" #tooltip="matTooltip" matTooltip="Add a member here"
+        matTooltipPosition="right" class="ml-auto m-l-8" matTooltipHideDelay="100000" (click)="addMember()">
         <mat-icon>add</mat-icon>
         Add Student
       </button>
@@ -23,11 +15,7 @@
       <table mat-table [dataSource]="dataSource" class="w-100">
         <!-- Id Column -->
         <ng-container matColumnDef="id">
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-            class="f-w-600 mat-subtitle-1 f-s-16"
-          >
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
             Id
           </th>
           <td mat-cell *matCellDef="let element" class="mat-body-1">
@@ -37,11 +25,7 @@
 
         <!-- Cin Column -->
         <ng-container matColumnDef="cin">
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-            class="f-w-600 mat-subtitle-1 f-s-16"
-          >
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
             Cin
           </th>
           <td mat-cell *matCellDef="let element" class="mat-body-1">
@@ -51,11 +35,7 @@
 
         <!-- Name Column -->
         <ng-container matColumnDef="nom">
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-            class="f-w-600 mat-subtitle-1 f-s-16"
-          >
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
             Name
           </th>
           <td mat-cell *matCellDef="let element" class="mat-body-1">
@@ -65,11 +45,7 @@
 
         <!-- Type Column -->
         <ng-container matColumnDef="type">
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-            class="f-w-600 mat-subtitle-1 f-s-16"
-          >
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
             Type
           </th>
           <td mat-cell *matCellDef="let element" class="mat-body-1">
@@ -79,11 +55,7 @@
 
         <!-- CV Column -->
         <ng-container matColumnDef="cv">
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-            class="f-w-600 mat-subtitle-1 f-s-16"
-          >
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
             CV
           </th>
           <td mat-cell *matCellDef="let element" class="mat-body-1">
@@ -93,11 +65,7 @@
 
         <!-- Created Date Column -->
         <ng-container matColumnDef="dateDeNaissance">
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-            class="f-w-600 mat-subtitle-1 f-s-16"
-          >
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
             Birth Date
           </th>
           <td mat-cell *matCellDef="let element" class="mat-body-1">
@@ -107,11 +75,7 @@
 
         <!-- Date Inscription Column -->
         <ng-container matColumnDef="dateInscription">
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-            class="f-w-600 mat-subtitle-1 f-s-16"
-          >
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
             Date Inscription
           </th>
           <td mat-cell *matCellDef="let element" class="mat-body-1">
@@ -121,11 +85,7 @@
 
         <!-- Diplome Column -->
         <ng-container matColumnDef="diplome">
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-            class="f-w-600 mat-subtitle-1 f-s-16"
-          >
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
             Diplome
           </th>
           <td mat-cell *matCellDef="let element" class="mat-body-1">
@@ -135,21 +95,16 @@
 
         <!-- Actions Column -->
         <ng-container matColumnDef="icons">
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-            class="f-w-600 mat-subtitle-1 f-s-16"
-          >
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
             Actions
           </th>
           <td mat-cell *matCellDef="let element" class="mat-body-1">
-            <button
-              mat-icon-button
-              [routerLink]="['/ui-components/students', element.id, 'edit']"
-            >
+            <button mat-icon-button [routerLink]="['/ui-components/consult',element.id]">
+              <mat-icon>open_in_new</mat-icon>
+            </button>
+            <button mat-icon-button [routerLink]="['/ui-components/students', element.id, 'edit']">
               <mat-icon>edit</mat-icon>
             </button>
-
             <button mat-icon-button color="warn" (click)="delete(element.id)">
               <mat-icon>delete</mat-icon>
             </button>

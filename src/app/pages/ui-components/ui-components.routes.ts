@@ -21,6 +21,7 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { AffectToolToMemberComponent } from 'src/app/pages/ui-components/affect-tool-to-member/affect-tool-to-member.component';
 import { AffectEventToMemberComponent } from 'src/app/pages/ui-components/affect-event-to-member/affect-event-to-member.component';
 import { AffectPublicationToMemberComponent } from './affect-publication-to-member/affect-publication-to-member.component';
+import { DetailPageComponent } from 'src/app/detail-page/detail-page.component';
 
 export const UiComponentsRoutes: Routes = [
   {
@@ -49,6 +50,10 @@ export const UiComponentsRoutes: Routes = [
       {
         path: 'teachers/:id/edit',
         component: TeacherFormComponent,
+      },
+      {
+        path: 'students/consult/:id',
+        component: DetailPageComponent,
       },
       {
         path: 'events',
