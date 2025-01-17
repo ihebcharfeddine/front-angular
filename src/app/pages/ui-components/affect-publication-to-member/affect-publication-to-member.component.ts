@@ -62,15 +62,15 @@ export class AffectPublicationToMemberComponent {
   save(): void {
     if (this.form.valid) {
       const memberId = this.form.value.memberId;
-      const pubId = this.form.value.PublicationId;
-
+      const pubId = this.form.value.publicationId; 
+  
       const memberPub: Membre_Publication = {
         auteur_id: memberId,
         publication_id: pubId,
       };
-
+  
       console.log('Payload:', memberPub);
-
+  
       this.memberService.affecterPublication(memberPub).subscribe(
         () => {
           console.log('Publication affected to auteur successfully!');
