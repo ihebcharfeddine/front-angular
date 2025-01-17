@@ -19,6 +19,8 @@ import { PublicationFormComponent } from 'src/app/publication-form/publication-f
 import { TeacherFormComponent } from 'src/app/teacher-form/teacher-form.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { AffectToolToMemberComponent } from 'src/app/pages/ui-components/affect-tool-to-member/affect-tool-to-member.component';
+import { AffectEventToMemberComponent } from 'src/app/pages/ui-components/affect-event-to-member/affect-event-to-member.component';
+import { AffectPublicationToMemberComponent } from './affect-publication-to-member/affect-publication-to-member.component';
 
 export const UiComponentsRoutes: Routes = [
   {
@@ -61,6 +63,10 @@ export const UiComponentsRoutes: Routes = [
         component: EventFormComponent,
       },
       {
+        path: 'events/affEvt',
+        component: AffectEventToMemberComponent,
+      },
+      {
         path: 'tools',
         pathMatch: 'full',
         component: ToolListComponent,
@@ -88,6 +94,10 @@ export const UiComponentsRoutes: Routes = [
       {
         path: 'publications/:id/edit',
         component: PublicationFormComponent,
+      },
+      {
+        path: 'publications/affPub',
+        component: AffectPublicationToMemberComponent,
       },
       {
         path: 'badge',

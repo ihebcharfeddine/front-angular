@@ -2,19 +2,18 @@
   <mat-card-header class="p-t-24">
     <div class="d-flex align-items-center justify-content-between w-100">
       <mat-card-title>Events List</mat-card-title>
-      <button
-        mat-flat-button
-        color="primary"
-        #tooltip="matTooltip"
-        matTooltip="Add an event here"
-        matTooltipPosition="right"
-        class="ml-auto m-l-8"
-        matTooltipHideDelay="100000"
-        (click)="addEvent()"
-      >
-        <mat-icon>add</mat-icon>
-        Add Event
-      </button>
+      <div class="">
+        <button mat-flat-button color="primary" #tooltip="matTooltip" matTooltip="Add a tool here"
+          matTooltipPosition="right" class="ml-auto m-l-8" matTooltipHideDelay="100000" (click)="addEvent()">
+          <mat-icon>add</mat-icon>
+          Add Event
+        </button>
+        <button mat-flat-button color="primary" #tooltip="matTooltip" matTooltip="Add a tool here"
+          matTooltipPosition="right" class="ml-auto m-l-8" matTooltipHideDelay="100000" (click)="OpenDialog()">
+
+          Affect Member
+        </button>
+      </div>
     </div>
   </mat-card-header>
 
@@ -51,17 +50,10 @@
         <ng-container matColumnDef="icons">
           <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell *matCellDef="let element">
-            <button
-              mat-icon-button
-              [routerLink]="['/ui-components/events', element.id, 'edit']"
-            >
+            <button mat-icon-button [routerLink]="['/ui-components/events', element.id, 'edit']">
               <mat-icon>edit</mat-icon>
             </button>
-            <button
-              mat-icon-button
-              color="warn"
-              (click)="deleteEvent(element.id)"
-            >
+            <button mat-icon-button color="warn" (click)="deleteEvent(element.id)">
               <mat-icon>delete</mat-icon>
             </button>
           </td>
