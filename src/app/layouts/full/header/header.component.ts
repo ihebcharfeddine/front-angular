@@ -10,6 +10,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -24,4 +25,12 @@ export class HeaderComponent {
   @Output() toggleMobileNav = new EventEmitter<void>();
   @Output() toggleMobileFilterNav = new EventEmitter<void>();
   @Output() toggleCollapsed = new EventEmitter<void>();
+
+  constructor(private router: Router) {}
+
+  logout() {
+    sessionStorage.removeItem('user');
+    this.router.navigate(['/authentication/login']);
+  }
+
 }

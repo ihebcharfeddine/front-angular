@@ -40,6 +40,10 @@ export const UiComponentsRoutes: Routes = [
         component: MemberFormComponent,
       },
       {
+        path: 'students/:id/detail',
+        component: DetailPageComponent,
+      },
+      {
         path: 'teachers',
         component: TeacherListComponent,
       },
