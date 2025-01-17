@@ -27,10 +27,8 @@ export class EventService {
     console.log('Making DELETE request for event ID:', id);
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
-  
 
   updateEvent(id: number, event: Event): Observable<void> {
     return this.http.put<void>(`${this.baseUrl}/${id}`, event);
   }
 }
-

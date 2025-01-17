@@ -44,6 +44,10 @@ export class ToolListComponent implements OnInit {
     this.router.navigate(['/ui-components/tools/create']);
   }
 
+  OpenDialog() {
+    this.router.navigate(['/ui-components/tools/affTool']);
+  }
+
   delete(id: number) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '350px',

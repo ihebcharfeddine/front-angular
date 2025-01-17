@@ -2,11 +2,19 @@
     <mat-card-header class="p-t-24">
         <div class="d-flex align-items-center justify-content-between w-100">
             <mat-card-title>Tools List</mat-card-title>
-            <button mat-flat-button color="primary" #tooltip="matTooltip" matTooltip="Add a tool here"
-                matTooltipPosition="right" class="ml-auto m-l-8" matTooltipHideDelay="100000" (click)="addTool()">
-                <mat-icon>add</mat-icon>
-                Add Tool
-            </button>
+            <div class="">
+                <button mat-flat-button color="primary" #tooltip="matTooltip" matTooltip="Add a tool here"
+                    matTooltipPosition="right" class="ml-auto m-l-8" matTooltipHideDelay="100000" (click)="addTool()">
+                    <mat-icon>add</mat-icon>
+                    Add Tool
+                </button>
+                <button mat-flat-button color="primary" #tooltip="matTooltip" matTooltip="Add a tool here"
+                    matTooltipPosition="right" class="ml-auto m-l-8" matTooltipHideDelay="100000"
+                    (click)="OpenDialog()">
+
+                    Affect Member
+                </button>
+            </div>
         </div>
     </mat-card-header>
 

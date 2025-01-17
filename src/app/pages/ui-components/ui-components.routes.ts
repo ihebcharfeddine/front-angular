@@ -18,6 +18,7 @@ import { PublicationListComponent } from 'src/app/pages/ui-components/publicatio
 import { PublicationFormComponent } from 'src/app/publication-form/publication-form.component';
 import { TeacherFormComponent } from 'src/app/teacher-form/teacher-form.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
+import { AffectToolToMemberComponent } from 'src/app/pages/ui-components/affect-tool-to-member/affect-tool-to-member.component';
 
 export const UiComponentsRoutes: Routes = [
   {
@@ -61,6 +62,7 @@ export const UiComponentsRoutes: Routes = [
       },
       {
         path: 'tools',
+        pathMatch: 'full',
         component: ToolListComponent,
       },
       {
@@ -70,6 +72,10 @@ export const UiComponentsRoutes: Routes = [
       {
         path: 'tools/:id/edit',
         component: ToolFormComponent,
+      },
+      {
+        path: 'tools/affTool',
+        component: AffectToolToMemberComponent,
       },
       {
         path: 'publications',
