@@ -48,7 +48,7 @@ export class MemberFormComponent implements OnInit {
   ngOnInit(): void {
     const idCourant = this.activatedRoute.snapshot.params['id'];
     if (!!idCourant) {
-      this.memberService.getMemberByID(idCourant).subscribe((item: Member) => {
+      this.memberService.getMemberByid(idCourant).subscribe((item: Member) => {
         this.memberGlobal = item;
         this.editForm(item);
       });
@@ -58,7 +58,7 @@ export class MemberFormComponent implements OnInit {
   editForm(m: Member): void {
     this.form.patchValue({
       cin: m.cin,
-      nom: m.name,
+      nom: m.nom,
       prenom: m.prenom,
       dateNaissance: m.dateNaissance,
       cv: m.cv,
@@ -77,7 +77,7 @@ export class MemberFormComponent implements OnInit {
     };
     console.log(Member);
     if (!!idCourant) {
-      this.memberService.updateMember(idCourant, Member).subscribe(() => {
+      this.memberService.updateEtudiant(idCourant, Member).subscribe(() => {
         this.router.navigate(['/ui-components/students']);
       });
     } else {

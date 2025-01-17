@@ -1,25 +1,28 @@
-import { Publication } from './Publication';
-import { Tool } from './Tool';
-import { Event } from './Event';
+import { Publication } from "./Publication";
+import { Event } from "./Event";
+import { Tool } from "./Tool";
 
 export interface Member {
-  id: number; // Changed from String to string
-  cin: string; // Changed from String to string
-  name: string; // Changed from name to nom to match the data
-  prenom: string; // Changed from String to string
-  dateNaissance: string; // Changed from String to string
-  photo: string | null; // Added photo field to match the data
-  cv: string; // Changed from String to string
-  email: string; // Changed from String to string
-  password: string; // Changed from String to string
-  pubs: Publication[] | null; // Changed to match the data (null is possible)
-  events?: Event[] | null; // Changed to match the data (null is possible)
-  outils?: Tool[] | null; // Changed to match the data (null is possible)
+    id:String,
+    cin:String,
+    nom:String,
+    prenom:String,
+    dateNaissance:String,
+    createdDate:String,
+    cv:String,
+    email:String,
+    password:String,
+    type?:string,
+    pubs:Publication[],
+    events?:Event[],
+    outils?:Tool[],
 
-  dateInscription?: string; // Changed from String to string
-  diplome?: string; // Changed from String to string
+    //etudiant
+    sujet?:String,
+    dateInscription?:String,
+    diplome?:String,
 
-  // Enseignant fields
-  grade?: string; // Changed from String to string
-  etablissement?: string; // Changed from String to string
+    //enseignant
+    grade?:String,
+    etablissement?:String,
 }

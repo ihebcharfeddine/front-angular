@@ -1,4 +1,4 @@
-export interface Membre_Tool {
+export interface Membre_Outil {
   tool_id: String;
   member_id: String;
 }

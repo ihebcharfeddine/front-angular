@@ -34,8 +34,7 @@ export class MemberListComponent {
   displayedColumns: string[] = [
     'id',
     'cin',
-    'name',
-    'type',
+    'nom',
     'cv',
     'dateDeNaissance',
     'dateInscription',
@@ -55,7 +54,7 @@ export class MemberListComponent {
     this.router.navigate(['/ui-components/students/create']);
   }
 
-  delete(id: number) {
+  delete(id: string) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '350px',
       data: { message: 'Are you sure you want to delete this member?' },
@@ -63,7 +62,7 @@ export class MemberListComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.MS.deleteMember(id).subscribe(() => {
+        this.MS.deleteMemberByid(id).subscribe(() => {
           this.MS.getAllStudents().subscribe((data) => {
             this.dataSource = data;
           });

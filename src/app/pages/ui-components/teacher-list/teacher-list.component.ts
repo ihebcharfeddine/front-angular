@@ -55,7 +55,7 @@ export class TeacherListComponent {
     this.router.navigate(['/ui-components/teachers/create']);
   }
 
-  delete(id: number) {
+  delete(id: string) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '350px',
       data: { message: 'Are you sure you want to delete this Teacher?' },
@@ -63,7 +63,7 @@ export class TeacherListComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.MS.deleteMember(id).subscribe(() => {
+        this.MS.deleteMemberByid(id).subscribe(() => {
           this.MS.getAllTeachers().subscribe((data) => {
             this.dataSource = data;
           });

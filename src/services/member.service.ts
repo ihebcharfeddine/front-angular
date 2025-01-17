@@ -3,106 +3,95 @@ import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { Member } from '../model/Member';
 import { Membre_Event } from 'src/model/Member_Event';
-import { Membre_Article } from 'src/model/Member_Article';
-import { Membre_Tool } from 'src/model/Member_Tool';
+import { Membre_Outil } from 'src/model/Membre_Outil';
+import { Membre_Publication } from 'src/model/Membre_Publication';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root', 
 })
 export class MemberService {
-  private baseUrl: string = 'http://localhost:9000/MEMBRE-SERVICE/membres';
   students: Member[] = [];
   teachers: Member[] = [];
 
-  constructor(private http: HttpClient) {}
+  private baseUrl: string = "http://localhost:9000/MEMBRE-SERVICE/membres"; // Updated base URL
 
-  // Get all members
-  getAllMembers(): Observable<Member[]> {
-    return this.http.get<Member[]>(`${this.baseUrl}`);
-  }
+  constructor(private httpClient: HttpClient) {}
+
+
+    // Get all members
+    getAllMembers(): Observable<Member[]> {
+      return this.httpClient.get<Member[]>(`${this.baseUrl}`);
+    }
+  
+    // Get all teachers
+    getAllTeachers(): Observable<Member[]> {
+      return this.getAllMembers().pipe(
+        map((members) => members.filter((member) => member.grade))
+      );
+    }
+  
+    // Get all students
+    getAllStudents(): Observable<Member[]> {
+      return this.getAllMembers().pipe(
+        map((members) => members.filter((member) => member.diplome))
+      );
+    }
 
   // Get a full member by ID
   getFullMember(id: number): Observable<Member> {
-    return this.http.get<Member>(`${this.baseUrl}/fullmember/${id}`);
+    return this.httpClient.get<Member>(`${this.baseUrl}/fullmember/${id}`);
   }
 
-  // Get all teachers
-  getAllTeachers(): Observable<Member[]> {
-    return this.getAllMembers().pipe(
-      map((members) => members.filter((member) => member.grade))
-    );
-  }
 
-  // Get all students
-  getAllStudents(): Observable<Member[]> {
-    return this.getAllMembers().pipe(
-      map((members) => members.filter((member) => member.diplome))
-    );
-  }
-
-  // Get a member by ID
-  getMemberByID(id: number): Observable<Member> {
-    return this.http.get<Member>(`${this.baseUrl}/${id}`);
-  }
-
-  // Delete a member by ID
-  deleteMember(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
-  }
-
-  // Save a student
   SaveEtudiant(etudiant: Member): Observable<void> {
-    return this.http.post<void>(this.baseUrl, etudiant);
+    return this.httpClient.post<void>(`${this.baseUrl}/etudiant`, etudiant);
   }
 
-  // Save a teacher
   SaveEnseignant(enseignant: Member): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}`, enseignant);
+    return this.httpClient.post<void>(`${this.baseUrl}/enseignant`, enseignant);
   }
 
-  // Affect an outil to a member
-  affecterOutil(memberOutil: Membre_Tool): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/outil`, memberOutil);
+    updateEtudiant(id: string, etudiant: Member): Observable<Member> {
+      return this.httpClient.put<Member>(`${this.baseUrl}/etudiant/${id}`, etudiant);
+    }
+  
+    updateEnseignant(id: string, enseignant: Member): Observable<Member> {
+      return this.httpClient.put<Member>(`${this.baseUrl}/enseignant/${id}`, enseignant);
+    }
+
+  getMemberByid(id: string): Observable<Member> {
+    return this.httpClient.get<Member>(`${this.baseUrl}/${id}`);
   }
 
-  // Affect an article to a member
-  affecterArticle(memberArticle: Membre_Article): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/publication`, memberArticle);
+  deleteMemberByid(id: string): Observable<void> {
+    return this.httpClient.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-  // Affect an event to a member
+  affecterOutil(memberOutil: Membre_Outil): Observable<void> {
+    return this.httpClient.post<void>(`http://localhost:9000/MEMBRE-SERVICE/outil`, memberOutil);
+  }
+
+  affecterPublication(memberPublication: Membre_Publication): Observable<void> {
+    return this.httpClient.post<void>(`http://localhost:9000/MEMBRE-SERVICE/publication`, memberPublication);
+  }
+
   affecterEvent(memberEvent: Membre_Event): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/evenement`, memberEvent);
+    return this.httpClient.post<void>(`http://localhost:9000/MEMBRE-SERVICE/event`, memberEvent);
   }
 
-  // Get the number of students by teacher (async/await example)
-  async getNbStudByTeacher(): Promise<number[]> {
-    const teachers = await this.http
-      .get<Member[]>(`${this.baseUrl}/enseignant`)
-      .toPromise();
-    const students = await this.http
-      .get<Member[]>(`${this.baseUrl}/etudiant`)
-      .toPromise();
-    const tabStudent: number[] = [];
-    let count = 0;
+  tabpub: number[] = [];
 
-    if (teachers) {
-      tabStudent.push(teachers.length - count);
+  async getNbStudByTeacher() {
+    var teacher = await this.httpClient.get<Member[]>(`${this.baseUrl}/search/enseignant`).toPromise();
+    var student = await this.httpClient.get<Member[]>(`${this.baseUrl}/search/etudiant`).toPromise();
+    var tabStudent: number[] = [];
+    var count = 0;
+    if (teacher) {
+      tabStudent.push(teacher.length - count);
     }
-    if (students) {
-      tabStudent.push(students.length - count);
+    if (student) {
+      tabStudent.push(student.length - count);
     }
-
     return tabStudent;
-  }
-
-  // Add a new member
-  add(m: Member): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/membre`, m);
-  }
-
-  // Update a member
-  updateMember(id: string, m: Member): Observable<void> {
-    return this.http.put<void>(`${this.baseUrl}/${id}`, m);
   }
 }
