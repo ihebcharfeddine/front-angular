@@ -7,7 +7,7 @@ import { Tool } from '../model/Tool';
   providedIn: 'root',
 })
 export class ToolService {
-  private apiUrl = 'http://localhost:3001/tools';
+  private apiUrl = 'http://localhost:9000/OUTIL-SERVICE/outils';
 
   constructor(private http: HttpClient) {}
 

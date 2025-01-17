@@ -61,7 +61,7 @@ export class ToolFormComponent implements OnInit {
         updatedDate: new Date().toISOString(),
       };
       this.toolService.updateTool(idCourant, toolData).subscribe(() => {
-        this.router.navigate(['ui-components/events']);
+        this.router.navigate(['ui-components/tools']);
       });
     } else {
       // Add new tool
@@ -70,7 +70,7 @@ export class ToolFormComponent implements OnInit {
         createdDate: new Date().toISOString(),
       };
       this.toolService.addTool(toolData).subscribe(() => {
-        this.router.navigate(['ui-components/events']);
+        this.router.navigate(['ui-components/tools']);
       });
     }
   }
