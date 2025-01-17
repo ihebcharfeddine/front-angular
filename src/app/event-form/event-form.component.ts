@@ -27,52 +27,32 @@ export class EventFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    // Initialize the form in the constructor
     this.eventForm = new FormGroup({
       titre: new FormControl(null, [Validators.required]),
       lieu: new FormControl(null),
-      datedebut: new FormControl(null, [Validators.required]),
-      datefin: new FormControl(null, [Validators.required]),
+      date: new FormControl(null, [Validators.required]),
     });
   }
 
   ngOnInit(): void {
-    const idCourant = this.activatedRoute.snapshot.params['id'];
-    console.log(idCourant);
-    if (!!idCourant) {
-      this.eventService.getEventByID(idCourant).subscribe((event: Event) => {
-        this.editForm(event);
+    const id = this.activatedRoute.snapshot.params['id'];
+    if (id) {
+      this.eventService.getEventByID(id).subscribe((event: Event) => {
+        this.eventForm.patchValue(event);
       });
     }
   }
 
-  editForm(event: Event): void {
-    // Use patchValue to update the form controls
-    this.eventForm.patchValue({
-      titre: event.titre,
-      lieu: event.lieu,
-      datedebut: event.datedebut,
-      datefin: event.datefin,
-    });
-  }
-
-  // Submit form data
   onSubmit(): void {
-    const idCourant = this.activatedRoute.snapshot.params['id'];
-    if (!!idCourant) {
-      const eventData = {
-        ...this.eventForm.value,
-        updatedDate: new Date().toISOString(),
-      };
-      this.eventService.updateEvent(idCourant, eventData).subscribe(() => {
+    const id = this.activatedRoute.snapshot.params['id'];
+    const eventData = this.eventForm.value;
+
+    if (id) {
+      this.eventService.updateEvent(id, eventData).subscribe(() => {
         this.router.navigate(['ui-components/events']);
       });
     } else {
-      const formData = {
-        ...this.eventForm.value,
-        createdDate: new Date().toISOString(),
-      };
-      this.eventService.addEvent(formData).subscribe(() => {
+      this.eventService.addEvent(eventData).subscribe(() => {
         this.router.navigate(['ui-components/events']);
       });
     }
