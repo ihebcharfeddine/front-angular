@@ -7,7 +7,7 @@ import { Publication } from '../model/Publication';
   providedIn: 'root',
 })
 export class PublicationService {
-  private apiUrl = 'http://localhost:3001/publications';
+  private apiUrl = 'http://localhost:9000/PUBLICATION-SERVICE/publications';
 
   constructor(private http: HttpClient) {}
 

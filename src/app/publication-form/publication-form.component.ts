@@ -32,7 +32,7 @@ export class PublicationFormComponent implements OnInit {
       titre: new FormControl(null, [Validators.required]),
       lien: new FormControl(null, [Validators.required]),
       date: new FormControl(null, [Validators.required]),
-      sourcePdf: new FormControl(null, [Validators.required]),
+      sourcepdf: new FormControl(null, [Validators.required]),
     });
   }
 
@@ -53,7 +53,7 @@ export class PublicationFormComponent implements OnInit {
       titre: p.titre,
       lien: p.lien,
       date: p.date,
-      sourcePdf: p.sourcePdf,
+      sourcepdf: p.sourcepdf,
     });
   }
 

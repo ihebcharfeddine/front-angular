@@ -37,7 +37,7 @@ export class PublicationListComponent {
     'titre',
     'lien',
     'date',
-    'sourcePdf',
+    'sourcepdf',
     'actions',
   ];
   dataSource: Publication[] = [];

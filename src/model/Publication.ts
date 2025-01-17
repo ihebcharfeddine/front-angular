@@ -4,5 +4,5 @@ export class Publication {
   titre: string;
   lien: string;
   date: Date;
-  sourcePdf: string;
+  sourcepdf: string;
 }
