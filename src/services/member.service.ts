@@ -13,8 +13,7 @@ export class MemberService {
   students: Member[] = [];
   teachers: Member[] = [];
 
-  private baseUrl: string = 'http://localhost:9000/MEMBRE-SERVICE/membres'; // Updated base URL
-
+  private baseUrl: string = 'http://localhost:9000/MEMBRE-SERVICE/membres';
   constructor(private httpClient: HttpClient) {}
 
   // Get all members
