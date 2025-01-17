@@ -16,8 +16,8 @@ import { Member } from 'src/model/Member';
   selector: 'app-teacher-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MaterialModule, RouterModule],
-  templateUrl: './teacher-form.component.html', // Update the template URL if needed
-  styleUrls: ['./teacher-form.component.scss'], // Update the style URL if needed
+  templateUrl: './teacher-form.component.html',
+  styleUrls: ['./teacher-form.component.scss'],
 })
 export class TeacherFormComponent implements OnInit {
   form: FormGroup;
@@ -41,6 +41,7 @@ export class TeacherFormComponent implements OnInit {
       email: new FormControl(null, [Validators.required, Validators.email]),
       grade: new FormControl(null, [Validators.required]),
       etablissement: new FormControl(null, [Validators.required]),
+      password: new FormControl('***', [Validators.required]), // Default password value is '***'
     });
   }
 
@@ -64,22 +65,30 @@ export class TeacherFormComponent implements OnInit {
       email: m.email,
       grade: m.grade,
       etablissement: m.etablissement,
+      password: '***', // Ensure the password is reset to default
     });
   }
 
   OnSubmit(): void {
     const idCourant = this.activatedRoute.snapshot.params['id'];
-    const Member = {
+    const teacher = {
       ...this.memberGlobal,
       ...this.form.value,
     };
-    console.log(Member);
+
+    // Ensure password is set (default is '***' if not modified by user)
+    if (!teacher.password || teacher.password === '***') {
+      teacher.password = '***'; // Keep it as '***' if it's empty or unchanged
+    }
+
+    console.log('Teacher Data being submitted:', teacher);
+
     if (!!idCourant) {
-      this.memberService.updateEnseignant(idCourant, Member).subscribe(() => {
+      this.memberService.updateEnseignant(idCourant, teacher).subscribe(() => {
         this.router.navigate(['/ui-components/teachers']); 
       });
     } else {
-      this.memberService.SaveEnseignant(Member).subscribe(() => {
+      this.memberService.SaveEnseignant(teacher).subscribe(() => {
         this.router.navigate(['/ui-components/teachers']); 
       });
     }

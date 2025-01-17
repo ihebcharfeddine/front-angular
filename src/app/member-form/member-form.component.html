@@ -1,62 +1,105 @@
 <mat-card class="b-1 shadow-none">
-    <mat-card-header>
-        <mat-card-title>Fill out your Infos</mat-card-title>
-    </mat-card-header>
+  <mat-card-header>
+    <mat-card-title>Fill out your Infos</mat-card-title>
+  </mat-card-header>
 
-    <mat-card-content class="b-t-1">
-        <form [formGroup]="form" (ngSubmit)="OnSubmit()">
-            <!-- Cin Field -->
-            <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Cin</mat-label>
-                <input matInput formControlName="cin" placeholder="Insert your CIN here" maxlength="8" />
-            </mat-form-field>
+  <mat-card-content class="b-t-1">
+    <form [formGroup]="form" (ngSubmit)="OnSubmit()">
+      <!-- Cin Field -->
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Cin</mat-label>
+        <input
+          matInput
+          formControlName="cin"
+          placeholder="Insert your CIN here"
+          maxlength="8"
+        />
+      </mat-form-field>
 
-            <!-- Name Fields -->
-            <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Nom</mat-label>
-                <input matInput formControlName="nom" placeholder="Insert your last name here" />
-            </mat-form-field>
+      <!-- Name Fields -->
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input
+          matInput
+          formControlName="nom"
+          placeholder="Insert your last name here"
+        />
+      </mat-form-field>
 
-            <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Prenom</mat-label>
-                <input matInput formControlName="prenom" placeholder="Insert your first name here" />
-            </mat-form-field>
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Prenom</mat-label>
+        <input
+          matInput
+          formControlName="prenom"
+          placeholder="Insert your first name here"
+        />
+      </mat-form-field>
 
-            <!-- Date of Birth Field -->
-            <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Date Naissance</mat-label>
-                <input matInput formControlName="dateNaissance" [matDatepicker]="picker" placeholder="MM/DD/YYYY" />
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+      <!-- Date of Birth Field -->
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Date Naissance</mat-label>
+        <input
+          matInput
+          formControlName="dateNaissance"
+          [matDatepicker]="picker"
+          placeholder="MM/DD/YYYY"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
 
-            <!-- CV Field -->
-            <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Cv</mat-label>
-                <input matInput formControlName="cv" placeholder="Insert your CV here" />
-            </mat-form-field>
+      <!-- CV Field -->
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Cv</mat-label>
+        <input
+          matInput
+          formControlName="cv"
+          placeholder="Insert your CV here"
+        />
+      </mat-form-field>
 
-            <!-- Email Field -->
-            <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Email</mat-label>
-                <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com" />
-            </mat-form-field>
+      <!-- Email Field -->
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          type="email"
+          matInput
+          formControlName="email"
+          placeholder="Ex. pat@example.com"
+        />
+      </mat-form-field>
 
+      <!-- Date Inscription Field -->
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Date Inscription</mat-label>
+        <input
+          matInput
+          formControlName="dateInscription"
+          [matDatepicker]="picker2"
+          placeholder="MM/DD/YYYY"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
 
-            <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Date Inscription</mat-label>
-                <input matInput formControlName="dateInscription" [matDatepicker]="picker2" placeholder="MM/DD/YYYY" />
-                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-                <mat-datepicker #picker2></mat-datepicker>
-            </mat-form-field>
+      <!-- Diplome Field -->
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Diplome</mat-label>
+        <input
+          matInput
+          formControlName="diplome"
+          placeholder="Insert your diploma here"
+        />
+      </mat-form-field>
 
-            <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Diplome</mat-label>
-                <input matInput formControlName="diplome" placeholder="Insert your diploma here" />
-            </mat-form-field>
-
-            <!-- Submit Button -->
-            <button mat-flat-button color="primary" type="submit">Submit</button>
-        </form>
-    </mat-card-content>
+      <!-- Submit Button -->
+      <button mat-flat-button color="primary" type="submit">Submit</button>
+    </form>
+  </mat-card-content>
 </mat-card>

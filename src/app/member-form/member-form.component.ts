@@ -71,19 +71,39 @@ export class MemberFormComponent implements OnInit {
 
   OnSubmit(): void {
     const idCourant = this.activatedRoute.snapshot.params['id'];
-    const Member = {
+    const member = {
       ...this.memberGlobal,
       ...this.form.value,
     };
-    console.log(Member);
+  
+    // Ensure password is set (default is '***' if not modified by user)
+    if (!member.password || member.password === '***') {
+      member.password = '***'; // Keep it as '***' if it's empty or unchanged
+    }
+  
+    // Format date fields before submitting
+    member.dateNaissance = this.formatDate(member.dateNaissance);
+    member.dateInscription = this.formatDate(member.dateInscription);
+  
+    console.log('Form Data being submitted:', member); // Debugging form data
+  
     if (!!idCourant) {
-      this.memberService.updateEtudiant(idCourant, Member).subscribe(() => {
+      this.memberService.updateEtudiant(idCourant, member).subscribe(() => {
         this.router.navigate(['/ui-components/students']);
       });
     } else {
-      this.memberService.SaveEtudiant(Member).subscribe(() => {
+      this.memberService.SaveEtudiant(member).subscribe(() => {
         this.router.navigate(['/ui-components/students']);
       });
     }
   }
+  
+  // Helper function to format dates as 'YYYY-MM-DD'
+  formatDate(date: any): string {
+    const dateObj = new Date(date);
+    return dateObj.toISOString().split('T')[0]; // Format as 'YYYY-MM-DD'
+  }
+  
+  
+  
 }
