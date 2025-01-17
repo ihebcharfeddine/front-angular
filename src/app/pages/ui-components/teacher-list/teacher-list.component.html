@@ -1,0 +1,102 @@
+<mat-card class="cardWithShadow">
+    <mat-card-header class="p-t-24">
+        <div class="d-flex align-items-center justify-content-between w-100">
+            <mat-card-title>Teacher List</mat-card-title>
+            <button mat-flat-button color="primary" #tooltip="matTooltip" matTooltip="Add a teacher here"
+                matTooltipPosition="right" class="ml-auto m-l-8" matTooltipHideDelay="100000" (click)="addTeacher()">
+                <mat-icon>add</mat-icon>
+                Add Teacher
+            </button>
+        </div>
+    </mat-card-header>
+
+    <mat-card-content class="p-t-0">
+        <div class="table-responsive">
+            <table mat-table [dataSource]="dataSource" class="w-100">
+                <!-- Id Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">ID</th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        <span>{{ element.id }}</span>
+                    </td>
+                </ng-container>
+
+                <!-- Cin Column -->
+                <ng-container matColumnDef="cin">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">CIN</th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        <span>{{ element.cin }}</span>
+                    </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">Name</th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        <span>{{ element.nom }} {{ element.prenom }}</span>
+                    </td>
+                </ng-container>
+
+                <!-- Type Column -->
+                <ng-container matColumnDef="type">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">Type</th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        <span>{{ element.type }}</span>
+                    </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="cv">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">CV</th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        <a href="{{element.cv}}">
+                            <mat-icon>picture_as_pdf</mat-icon>
+                        </a>
+                    </td>
+                </ng-container>
+
+
+                <!-- Grade Column -->
+                <ng-container matColumnDef="grade">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">Grade</th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        <span>{{ element.grade }}</span>
+                    </td>
+                </ng-container>
+
+                <!-- Etablissement Column -->
+                <ng-container matColumnDef="etablissement">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">Etablissement</th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        <span>{{ element.etablissement }}</span>
+                    </td>
+                </ng-container>
+
+                <!-- Created Date Column -->
+                <ng-container matColumnDef="createdDate">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">Created Date</th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        {{ element.createdDate | date: 'medium' }}
+                    </td>
+                </ng-container>
+
+                <!-- Actions Column -->
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">Actions</th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        <button mat-icon-button [routerLink]="['/ui-components/teacher', element.id, 'edit']">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="deleteTeacher(element.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <!-- Table Rows -->
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+        </div>
+    </mat-card-content>
+</mat-card>

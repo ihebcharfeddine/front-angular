@@ -8,7 +8,7 @@ import { AppMenuComponent } from './menu/menu.component';
 import { AppTooltipsComponent } from './tooltips/tooltips.component';
 import { AppFormsComponent } from './forms/forms.component';
 import { AppTablesComponent } from './tables/tables.component';
-import { MemberListComponent } from 'src/app/pages/ui-components/member-list/member-list.component';
+import { MemberListComponent } from 'src/app/pages/ui-components/students/member-list.component';
 import { MemberFormComponent } from 'src/app/member-form/member-form.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventFormComponent } from 'src/app/event-form/event-form.component';
@@ -22,15 +22,15 @@ export const UiComponentsRoutes: Routes = [
     path: '',
     children: [
       {
-        path: 'members',
+        path: 'students',
         component: MemberListComponent,
       },
       {
-        path: 'create',
+        path: 'students/create',
         component: MemberFormComponent,
       },
       {
-        path: ':id/edit',
+        path: 'students/:id/edit',
         component: MemberFormComponent,
       },
       {

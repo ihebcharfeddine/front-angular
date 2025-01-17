@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Publication } from '../../../model/Publication';
+import { Publication } from '../../../../model/Publication';
 import { CommonModule } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MaterialModule } from '../../../material.module';
-import { PublicationService } from 'src/app/services/publication.service';
+import { PublicationService } from 'src/services/publication.service';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';

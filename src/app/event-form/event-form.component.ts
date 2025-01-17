@@ -5,11 +5,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { EventService } from '../services/event.service';
+import { EventService } from '../../services/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MaterialModule } from '../material.module';
 import { CommonModule } from '@angular/common';
-import { Event } from '../model/Event';
+import { Event } from '../../model/Event';
 import { RouterModule } from '@angular/router';
 
 @Component({

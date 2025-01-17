@@ -5,11 +5,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { PublicationService } from '../services/publication.service';
+import { PublicationService } from '../../services/publication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MaterialModule } from '../material.module';
 import { CommonModule } from '@angular/common';
-import { Publication } from '../model/Publication';
+import { Publication } from '../../model/Publication';
 import { RouterModule } from '@angular/router';
 
 @Component({

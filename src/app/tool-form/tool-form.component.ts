@@ -7,9 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { MaterialModule } from '../material.module';
-import { ToolService } from '../services/tool.service';
+import { ToolService } from '../../services/tool.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Tool } from '../model/Tool';
+import { Tool } from '../../model/Tool';
 
 @Component({
   selector: 'app-tool-form',

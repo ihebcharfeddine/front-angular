@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Member } from '../../../model/Member';
+import { Member } from '../../../../model/Member';
 import { CommonModule } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MaterialModule } from '../../../material.module';
-import { MemberService } from 'src/app/services/member.service';
+import { MemberService } from 'src/services/member.service';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -37,19 +37,22 @@ export class MemberListComponent {
     'name',
     'type',
     'cv',
-    'createdDate',
+    'dateDeNaissance',
+    'dateInscription',
+    'diplome',
     'icons',
   ];
   dataSource: Member[] = [];
 
   ngOnInit(): void {
-    this.MS.getAllMembers().subscribe((data) => {
+    this.MS.getAllStudents().subscribe((data) => {
       this.dataSource = data;
+      console.log(data);
     });
   }
 
   addMember() {
-    this.router.navigate(['/ui-components/create']);
+    this.router.navigate(['/ui-components/student/create']);
   }
 
   delete(id: string) {
@@ -60,7 +63,7 @@ export class MemberListComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.MS.deleteMember(id).subscribe(() => {
+        this.MS.deleteMemberByID(id).subscribe(() => {
           this.MS.getAllMembers().subscribe((data) => {
             this.dataSource = data;
           });

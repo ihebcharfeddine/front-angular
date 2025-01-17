@@ -2,11 +2,11 @@
 
     <mat-card-header class="p-t-24">
         <div class="d-flex align-items-center justify-content-between w-100">
-            <mat-card-title>Members List</mat-card-title>
+            <mat-card-title>Student List</mat-card-title>
             <button mat-flat-button color="primary" #tooltip="matTooltip" matTooltip="Add a member here"
                 matTooltipPosition="right" class="ml-auto m-l-8" matTooltipHideDelay="100000" (click)="addMember()">
                 <mat-icon>add</mat-icon>
-                Add Member
+                Add Student
             </button>
         </div>
     </mat-card-header>
@@ -40,7 +40,7 @@
                         Name
                     </th>
                     <td mat-cell *matCellDef="let element" class="mat-body-1">
-                        <span>{{element.name}}</span>
+                        <span>{{element.nom}} {{element.prenom}}</span>
                     </td>
                 </ng-container>
 
@@ -53,29 +53,51 @@
                         <span>{{element.type}}</span>
                     </td>
                 </ng-container>
+
                 <!-- CV Column -->
                 <ng-container matColumnDef="cv">
                     <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16"> CV </th>
-                    <td mat-cell *matCellDef="let element" class="mat-body-1"><a
-                            href="{{element.cv}}"><mat-icon>picture_as_pdf</mat-icon></a> </td>
-                </ng-container>
-
-                <!-- Created Date Column -->
-                <ng-container matColumnDef="createdDate">
-                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16"> Created Date </th>
-                    <td mat-cell *matCellDef="let element" class="mat-body-1"> {{element.createdDate | date:'medium'}}
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        <a href="{{element.cv}}"><mat-icon>picture_as_pdf</mat-icon></a>
                     </td>
                 </ng-container>
 
+                <!-- Created Date Column -->
+                <ng-container matColumnDef="dateDeNaissance">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16"> Birth Date </th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        {{element.dateNaissance | date:'medium'}}
+                    </td>
+                </ng-container>
+
+                <!-- Date Inscription Column -->
+                <ng-container matColumnDef="dateInscription">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16"> Date Inscription </th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        {{element.dateInscription | date:'medium'}}
+                    </td>
+                </ng-container>
+
+                <!-- Diplome Column -->
+                <ng-container matColumnDef="diplome">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16"> Diplome </th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        <span>{{element.diplome}}</span>
+                    </td>
+                </ng-container>
+
+                <!-- Actions Column -->
                 <ng-container matColumnDef="icons">
                     <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16"> Actions </th>
                     <td mat-cell *matCellDef="let element" class="mat-body-1">
-                        <button mat-icon-button [routerLink]="['/ui-components', element.id, 'edit']">
+                        <button mat-icon-button><!-- 
+                            [routerLink]="['/ui-components', element.id, 'edit']" -->
                             <mat-icon>edit</mat-icon>
                         </button>
 
-                        <button mat-icon-button color="warn" (click)="delete(element.id)">
-                            <mat-icon>delete</mat-icon>
+                        <button mat-icon-button color="warn">
+                            <!-- (click)="delete(element.id)"
+                             --><mat-icon>delete</mat-icon>
                         </button>
                     </td>
                 </ng-container>

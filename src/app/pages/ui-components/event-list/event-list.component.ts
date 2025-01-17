@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Event } from '../../../model/Event'; // Replace with your Event model path
+import { Event } from '../../../../model/Event'; // Replace with your Event model path
 import { CommonModule } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../confirm-dialog/confirm-dialog.component'; // Replace with your ConfirmDialog path
-import { EventService } from 'src/app/services/event.service'; // Replace with your EventService path
+import { EventService } from 'src/services/event.service'; // Replace with your EventService path
 
 @Component({
   selector: 'app-event-list',

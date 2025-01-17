@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { NavItem } from './nav-item';
 import { Router } from '@angular/router';
-import { NavService } from '../../../../services/nav.service';
+import { NavService } from '../../../../../services/nav.service';
 import {
   animate,
   state,
@@ -70,7 +70,6 @@ export class AppNavItemComponent implements OnChanges {
   onItemSelected(item: NavItem) {
     if (!item.children || !item.children.length) {
       this.router.navigate([item.route]);
-      
     }
     if (item.children && item.children.length) {
       this.expanded = !this.expanded;
@@ -81,15 +80,15 @@ export class AppNavItemComponent implements OnChanges {
       left: 0,
       behavior: 'smooth',
     });
-    if (!this.expanded){
-    if (window.innerWidth < 1024) {
-      this.notify.emit();
+    if (!this.expanded) {
+      if (window.innerWidth < 1024) {
+        this.notify.emit();
+      }
     }
-  }
   }
 
   onSubItemSelected(item: NavItem) {
-    if (!item.children || !item.children.length){
+    if (!item.children || !item.children.length) {
       if (this.expanded && window.innerWidth < 1024) {
         this.notify.emit();
       }

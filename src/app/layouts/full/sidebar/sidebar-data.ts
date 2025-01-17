@@ -15,10 +15,16 @@ export const navItems: NavItem[] = [
     navCap: 'Ui Components',
   },
   {
-    displayName: 'MembersList',
+    displayName: 'Students',
     iconName: 'users',
     bgcolor: 'primary',
-    route: '/ui-components/members',
+    route: '/ui-components/students',
+  },
+  {
+    displayName: 'Teachers',
+    iconName: 'users',
+    bgcolor: 'primary',
+    route: '/ui-components/teachers',
   },
   {
     displayName: 'PublicationsList',
