@@ -3,7 +3,7 @@
         <div class="d-flex align-items-center justify-content-between w-100">
             <mat-card-title>Teacher List</mat-card-title>
             <button mat-flat-button color="primary" #tooltip="matTooltip" matTooltip="Add a teacher here"
-                matTooltipPosition="right" class="ml-auto m-l-8" matTooltipHideDelay="100000" (click)="addTeacher()">
+                matTooltipPosition="right" class="ml-auto m-l-8" matTooltipHideDelay="100000" (click)="addMember()">
                 <mat-icon>add</mat-icon>
                 Add Teacher
             </button>
@@ -15,79 +15,79 @@
             <table mat-table [dataSource]="dataSource" class="w-100">
                 <!-- Id Column -->
                 <ng-container matColumnDef="id">
-                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">ID</th>
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
+                        Id
+                    </th>
                     <td mat-cell *matCellDef="let element" class="mat-body-1">
-                        <span>{{ element.id }}</span>
+                        <span>{{element.id}}</span>
                     </td>
                 </ng-container>
 
                 <!-- Cin Column -->
                 <ng-container matColumnDef="cin">
-                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">CIN</th>
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
+                        Cin
+                    </th>
                     <td mat-cell *matCellDef="let element" class="mat-body-1">
-                        <span>{{ element.cin }}</span>
+                        <span>{{element.cin}}</span>
                     </td>
                 </ng-container>
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">Name</th>
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
+                        Name
+                    </th>
                     <td mat-cell *matCellDef="let element" class="mat-body-1">
-                        <span>{{ element.nom }} {{ element.prenom }}</span>
+                        <span>{{element.name}} {{element.prenom}}</span>
                     </td>
                 </ng-container>
-
-                <!-- Type Column -->
-                <ng-container matColumnDef="type">
-                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">Type</th>
-                    <td mat-cell *matCellDef="let element" class="mat-body-1">
-                        <span>{{ element.type }}</span>
-                    </td>
-                </ng-container>
-
-                <!-- Name Column -->
-                <ng-container matColumnDef="cv">
-                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">CV</th>
-                    <td mat-cell *matCellDef="let element" class="mat-body-1">
-                        <a href="{{element.cv}}">
-                            <mat-icon>picture_as_pdf</mat-icon>
-                        </a>
-                    </td>
-                </ng-container>
-
 
                 <!-- Grade Column -->
                 <ng-container matColumnDef="grade">
-                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">Grade</th>
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
+                        Grade
+                    </th>
                     <td mat-cell *matCellDef="let element" class="mat-body-1">
-                        <span>{{ element.grade }}</span>
+                        <span>{{element.grade}}</span>
                     </td>
                 </ng-container>
 
                 <!-- Etablissement Column -->
                 <ng-container matColumnDef="etablissement">
-                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">Etablissement</th>
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
+                        Etablissement
+                    </th>
                     <td mat-cell *matCellDef="let element" class="mat-body-1">
-                        <span>{{ element.etablissement }}</span>
+                        <span>{{element.etablissement}}</span>
+                    </td>
+                </ng-container>
+
+                <!-- CV Column -->
+                <ng-container matColumnDef="cv">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16"> CV </th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        <a href="{{element.cv}}"><mat-icon>picture_as_pdf</mat-icon></a>
                     </td>
                 </ng-container>
 
                 <!-- Created Date Column -->
-                <ng-container matColumnDef="createdDate">
-                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">Created Date</th>
+                <ng-container matColumnDef="dateDeNaissance">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16"> Birth Date </th>
                     <td mat-cell *matCellDef="let element" class="mat-body-1">
-                        {{ element.createdDate | date: 'medium' }}
+                        {{element.dateNaissance | date:'medium'}}
                     </td>
                 </ng-container>
 
                 <!-- Actions Column -->
-                <ng-container matColumnDef="actions">
-                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">Actions</th>
+                <ng-container matColumnDef="icons">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16"> Actions </th>
                     <td mat-cell *matCellDef="let element" class="mat-body-1">
-                        <button mat-icon-button [routerLink]="['/ui-components/teacher', element.id, 'edit']">
+                        <button mat-icon-button [routerLink]="['/ui-components/teachers', element.id, 'edit']">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-icon-button color="warn" (click)="deleteTeacher(element.id)">
+
+                        <button mat-icon-button color="warn" (click)="delete(element.id)">
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>

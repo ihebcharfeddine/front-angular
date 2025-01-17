@@ -16,6 +16,8 @@ import { ToolListComponent } from './tool-list/tool-list.component';
 import { ToolFormComponent } from 'src/app/tool-form/tool-form.component';
 import { PublicationListComponent } from 'src/app/pages/ui-components/publication-list/publication-list.component';
 import { PublicationFormComponent } from 'src/app/publication-form/publication-form.component';
+import { TeacherFormComponent } from 'src/app/teacher-form/teacher-form.component';
+import { TeacherListComponent } from './teacher-list/teacher-list.component';
 
 export const UiComponentsRoutes: Routes = [
   {
@@ -32,6 +34,18 @@ export const UiComponentsRoutes: Routes = [
       {
         path: 'students/:id/edit',
         component: MemberFormComponent,
+      },
+      {
+        path: 'teachers',
+        component: TeacherListComponent,
+      },
+      {
+        path: 'teachers/create',
+        component: TeacherFormComponent,
+      },
+      {
+        path: 'teachers/:id/edit',
+        component: TeacherFormComponent,
       },
       {
         path: 'events',

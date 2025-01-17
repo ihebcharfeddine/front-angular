@@ -3,7 +3,7 @@ import { Tool } from './Tool';
 import { Event } from './Event';
 
 export interface Member {
-  id: string; // Changed from String to string
+  id: number; // Changed from String to string
   cin: string; // Changed from String to string
   name: string; // Changed from name to nom to match the data
   prenom: string; // Changed from String to string

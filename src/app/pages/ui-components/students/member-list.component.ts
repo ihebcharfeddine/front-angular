@@ -52,10 +52,10 @@ export class MemberListComponent {
   }
 
   addMember() {
-    this.router.navigate(['/ui-components/student/create']);
+    this.router.navigate(['/ui-components/students/create']);
   }
 
-  delete(id: string) {
+  delete(id: number) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '350px',
       data: { message: 'Are you sure you want to delete this member?' },
@@ -63,8 +63,8 @@ export class MemberListComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.MS.deleteMemberByID(id).subscribe(() => {
-          this.MS.getAllMembers().subscribe((data) => {
+        this.MS.deleteMember(id).subscribe(() => {
+          this.MS.getAllStudents().subscribe((data) => {
             this.dataSource = data;
           });
         });

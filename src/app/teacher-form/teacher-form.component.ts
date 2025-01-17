@@ -13,13 +13,13 @@ import { RouterModule } from '@angular/router';
 import { Member } from 'src/model/Member';
 
 @Component({
-  selector: 'app-member-form',
+  selector: 'app-teacher-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MaterialModule, RouterModule],
-  templateUrl: './member-form.component.html',
-  styleUrls: ['./member-form.component.scss'],
+  templateUrl: './teacher-form.component.html', // Update the template URL if needed
+  styleUrls: ['./teacher-form.component.scss'], // Update the style URL if needed
 })
-export class MemberFormComponent implements OnInit {
+export class TeacherFormComponent implements OnInit {
   form: FormGroup;
   memberGlobal!: Member;
   type!: string;
@@ -39,9 +39,8 @@ export class MemberFormComponent implements OnInit {
       dateNaissance: new FormControl(null, [Validators.required]),
       cv: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required]),
-      dateInscription: new FormControl(null),
-      diplome: new FormControl(null),
+      grade: new FormControl(null, [Validators.required]),
+      etablissement: new FormControl(null, [Validators.required]),
     });
   }
 
@@ -63,9 +62,8 @@ export class MemberFormComponent implements OnInit {
       dateNaissance: m.dateNaissance,
       cv: m.cv,
       email: m.email,
-      password: m.password,
-      dateInscription: m.dateInscription,
-      diplome: m.diplome,
+      grade: m.grade,
+      etablissement: m.etablissement,
     });
   }
 
@@ -78,11 +76,11 @@ export class MemberFormComponent implements OnInit {
     console.log(Member);
     if (!!idCourant) {
       this.memberService.updateMember(idCourant, Member).subscribe(() => {
-        this.router.navigate(['/ui-components/students']);
+        this.router.navigate(['/ui-components/teachers']); 
       });
     } else {
-      this.memberService.SaveEtudiant(Member).subscribe(() => {
-        this.router.navigate(['/ui-components/students']);
+      this.memberService.SaveEnseignant(Member).subscribe(() => {
+        this.router.navigate(['/ui-components/teachers']); 
       });
     }
   }

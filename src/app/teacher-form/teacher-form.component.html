@@ -42,17 +42,16 @@
                 <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com" />
             </mat-form-field>
 
-
+            <!-- Grade Field -->
             <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Date Inscription</mat-label>
-                <input matInput formControlName="dateInscription" [matDatepicker]="picker2" placeholder="MM/DD/YYYY" />
-                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-                <mat-datepicker #picker2></mat-datepicker>
+                <mat-label>Grade</mat-label>
+                <input matInput formControlName="grade" placeholder="Insert your grade here" />
             </mat-form-field>
 
+            <!-- Etablissement Field -->
             <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Diplome</mat-label>
-                <input matInput formControlName="diplome" placeholder="Insert your diploma here" />
+                <mat-label>Etablissement</mat-label>
+                <input matInput formControlName="etablissement" placeholder="Insert your establishment here" />
             </mat-form-field>
 
             <!-- Submit Button -->
