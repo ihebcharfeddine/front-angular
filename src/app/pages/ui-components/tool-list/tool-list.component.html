@@ -1,0 +1,66 @@
+<mat-card class="cardWithShadow">
+    <mat-card-header class="p-t-24">
+        <div class="d-flex align-items-center justify-content-between w-100">
+            <mat-card-title>Tools List</mat-card-title>
+            <button mat-flat-button color="primary" #tooltip="matTooltip" matTooltip="Add a tool here"
+                matTooltipPosition="right" class="ml-auto m-l-8" matTooltipHideDelay="100000" (click)="addTool()">
+                <mat-icon>add</mat-icon>
+                Add Tool
+            </button>
+        </div>
+    </mat-card-header>
+
+    <mat-card-content class="p-t-0">
+        <div class="table-responsive">
+            <table mat-table [dataSource]="dataSource" class="w-100">
+                <!-- Id Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
+                        Id
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        <span>{{element.id}}</span>
+                    </td>
+                </ng-container>
+
+                <!-- Date Column -->
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
+                        Date
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        <span>{{element.date | date:'medium'}}</span>
+                    </td>
+                </ng-container>
+
+                <!-- Source Column -->
+                <ng-container matColumnDef="source">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16">
+                        Source
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        <span>{{element.source}}</span>
+                    </td>
+                </ng-container>
+
+                <!-- Actions Column -->
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-16"> Actions </th>
+                    <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        <button mat-icon-button [routerLink]="['/ui-components/tools', element.id, 'edit']">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+
+                        <button mat-icon-button color="warn" (click)="delete(element.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <!-- Table Rows -->
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+        </div>
+    </mat-card-content>
+</mat-card>

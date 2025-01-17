@@ -1,0 +1,139 @@
+{
+  "members": [
+    {
+      "cin": "12345679",
+      "cv": "https://www.cdc.gov/polio/stop/pdf/stop-cv-format.pdf",
+      "name": "John Doe",
+      "type": "client",
+      "createdDate": "2025-01-16T11:00:09.470Z",
+      "id": "1"
+    },
+    {
+      "cin": "11155738",
+      "cv": "none",
+      "name": "Iheb Charfeddine",
+      "type": "ATS",
+      "createdDate": "2025-01-16T11:00:32.139Z",
+      "id": "e833"
+    },
+    {
+      "id": "06a8",
+      "cin": "1132244",
+      "cv": "none",
+      "name": "hanou oni chan",
+      "type": "none",
+      "createdDate": "2025-01-15T20:09:31.002Z"
+    },
+    {
+      "cin": "3isam",
+      "cv": "ggg",
+      "name": "gg",
+      "type": "111qq",
+      "createdDate": "2025-01-17T08:04:38.227Z",
+      "id": "9bb9"
+    }
+  ],
+  "events": [
+    {
+      "titre": "TechCamp",
+      "lieu": "ENIS",
+      "datedebut": "2024-10-14T23:00:00.000Z",
+      "datefin": "2024-10-14T23:00:00.000Z",
+      "updatedDate": "2025-01-16T21:11:21.557Z",
+      "id": "f737"
+    },
+    {
+      "titre": "GODS",
+      "lieu": "ENIS",
+      "datedebut": "2024-10-09T23:00:00.000Z",
+      "datefin": "2024-10-16T23:00:00.000Z",
+      "updatedDate": "2025-01-16T21:11:09.243Z",
+      "id": "eea3"
+    },
+    {
+      "titre": "jhg",
+      "lieu": "ENIS",
+      "datedebut": "2024-10-14T23:00:00.000Z",
+      "datefin": "2024-10-15T23:00:00.000Z",
+      "updatedDate": "2025-01-16T21:10:54.337Z",
+      "id": "dd0e"
+    },
+    {
+      "id": "6628",
+      "titre": "TSYP12",
+      "lieu": "Diar lemdina",
+      "datedebut": "2025-12-17T23:00:00.000Z",
+      "datefin": "2025-12-20T23:00:00.000Z",
+      "createdDate": "2025-01-16T21:12:31.833Z"
+    }
+  ],
+  "tools": [
+    {
+      "id": "f737",
+      "date": "2025-12-20T23:00:00.000Z",
+      "source": "bien"
+    },
+    {
+      "id": "abc123",
+      "date": "2025-01-14T15:30:00.000Z",
+      "source": "documentation"
+    },
+    {
+      "id": "xyz789",
+      "date": "2025-01-15T10:00:00.000Z",
+      "source": "online"
+    },
+    {
+      "id": "tool456",
+      "date": "2025-01-16T12:45:00.000Z",
+      "source": "library"
+    },
+    {
+      "id": "util789",
+      "date": "2025-01-17T14:20:00.000Z",
+      "source": "training"
+    }
+  ],
+  "publications": [
+    {
+      "id": 1,
+      "type": "Research Paper",
+      "titre": "Advancements in Artificial Intelligence",
+      "lien": "https://example.com/ai-paper",
+      "date": "2023-01-15",
+      "sourcePdf": "https://example.com/ai-paper.pdf"
+    },
+    {
+      "id": 2,
+      "type": "Conference Paper",
+      "titre": "IoT Applications in Smart Cities",
+      "lien": "https://example.com/iot-smart-cities",
+      "date": "2023-03-22",
+      "sourcePdf": "https://example.com/iot-smart-cities.pdf"
+    },
+    {
+      "id": 3,
+      "type": "Thesis",
+      "titre": "Blockchain Technology for Secure Transactions",
+      "lien": "https://example.com/blockchain-thesis",
+      "date": "2022-11-10",
+      "sourcePdf": "https://example.com/blockchain-thesis.pdf"
+    },
+    {
+      "id": 4,
+      "type": "Book Chapter",
+      "titre": "Machine Learning for Beginners",
+      "lien": "https://example.com/ml-book-chapter",
+      "date": "2021-07-05",
+      "sourcePdf": "https://example.com/ml-book-chapter.pdf"
+    },
+    {
+      "id": 5,
+      "type": "Technical Report",
+      "titre": "Cybersecurity Trends in 2023",
+      "lien": "https://example.com/cybersecurity-trends",
+      "date": "2023-05-18",
+      "sourcePdf": "https://example.com/cybersecurity-trends.pdf"
+    }
+  ]
+}
