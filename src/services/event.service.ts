@@ -36,5 +36,5 @@ export class EventService {
     return this.getAllEvents().pipe(
       map(events => events.filter(event => event.titre.toLowerCase().includes(title.toLowerCase())))
     );
-  
-}}
+  }
+}

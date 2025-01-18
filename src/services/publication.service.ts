@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Publication } from '../model/Publication';
 
 @Injectable({
@@ -32,5 +32,15 @@ export class PublicationService {
 
   deletePublication(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  getPublicationsByTitle(titre: string): Observable<Publication[]> {
+    return this.getAllPublications().pipe(
+      map((pubs) =>
+        pubs.filter((publication) =>
+          publication.titre.toLowerCase().includes(titre.toLowerCase())
+        )
+      )
+    );
   }
 }
