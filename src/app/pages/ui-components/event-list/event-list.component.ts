@@ -47,6 +47,23 @@ export class EventListComponent implements OnInit {
   OpenDialog() {
     this.router.navigate(['/ui-components/events/affEvt']);
   }
+
+  applyFilter(event: KeyboardEvent) {
+    const filterValue = (event.target as HTMLInputElement).value
+      .trim()
+      .toLowerCase();
+
+    // Call the service with the filter value
+    this.eventService.getEventsByTitle(filterValue).subscribe(
+      (filteredData) => {
+        this.dataSource = filteredData;
+      },
+      (error) => {
+        console.error('Error fetching filtered events:', error);
+      }
+    );
+  }
+
   deleteEvent(id: number) {
     console.log('Delete event triggered for ID:', id);
 
