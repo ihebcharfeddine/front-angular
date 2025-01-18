@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Event } from '../model/Event';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -33,6 +33,8 @@ export class EventService {
   }
 
   getEventsByTitle(title: string): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.baseUrl}/${title}`);
-  }
-}
+    return this.getAllEvents().pipe(
+      map(events => events.filter(event => event.titre.toLowerCase().includes(title.toLowerCase())))
+    );
+  
+}}

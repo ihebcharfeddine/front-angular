@@ -51,18 +51,35 @@ export class EventListComponent implements OnInit {
   applyFilter(event: KeyboardEvent) {
     const filterValue = (event.target as HTMLInputElement).value
       .trim()
-      .toLowerCase();
-
-    // Call the service with the filter value
+      .toLowerCase(); // Normalize the filter value by trimming and converting to lowercase
+  
+    // If the filter value is empty, fetch all events
+    if (filterValue.length === 0) {
+      console.log('No filter value entered, fetching all events.');
+      this.eventService.getAllEvents().subscribe(
+        (data) => {
+          this.dataSource = data;
+        },
+        (error) => {
+          console.error('Error fetching all events:', error);
+        }
+      );
+      return;  // Skip further logic if no filter is applied
+    }
+  
+    // Call the service with the filter value (searching by titre/title)
     this.eventService.getEventsByTitle(filterValue).subscribe(
       (filteredData) => {
-        this.dataSource = filteredData;
+        this.dataSource = filteredData; // Update the dataSource with filtered data
       },
       (error) => {
         console.error('Error fetching filtered events:', error);
       }
     );
   }
+  
+  
+  
 
   deleteEvent(id: number) {
     console.log('Delete event triggered for ID:', id);
