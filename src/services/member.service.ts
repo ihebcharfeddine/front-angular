@@ -62,6 +62,20 @@ export class MemberService {
     );
   }
 
+    // Function to get the number of students
+    getNumberOfStudents(): Observable<number> {
+      return this.getAllStudents().pipe(
+        map((students) => students.length)
+      );
+    }
+  
+    // Function to get the number of teachers
+    getNumberOfTeachers(): Observable<number> {
+      return this.getAllTeachers().pipe(
+        map((teachers) => teachers.length)
+      );
+    }
+    
   getMemberByid(id: string): Observable<Member> {
     return this.httpClient.get<Member>(`${this.baseUrl}/${id}`);
   }
