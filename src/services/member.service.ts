@@ -93,6 +93,24 @@ export class MemberService {
     );
   }
 
+    // get the distribution of students by their diplomas
+    getStudentDistributionByDiploma(): Observable<any> {
+      return this.getAllStudents().pipe(
+        map((students) => {
+          const distribution: { [key: string]: number } = {}; 
+
+          students.forEach((student) => {
+            if (student.diplome) {
+              const diploma = student.diplome as string;  
+              distribution[diploma] = (distribution[diploma] || 0) + 1;
+            }
+          });
+
+          return distribution;
+        })
+      );
+    }
+  
   getStudentsByTitle(titre: string): Observable<Member[]> {
     return this.getAllStudents().pipe(
       map((members) =>

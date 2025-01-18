@@ -1,8 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
-import { TablerIconsModule } from 'angular-tabler-icons';
-import { MaterialModule } from 'src/app/material.module';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MaterialModule } from 'src/app/material.module';
+import { TablerIconsModule } from 'angular-tabler-icons';
+import { NgApexchartsModule } from 'ng-apexcharts';
 import {
   ApexChart,
   ChartComponent,
@@ -17,17 +17,10 @@ import {
   ApexPlotOptions,
   ApexFill,
   ApexMarkers,
-  ApexResponsive,
-  NgApexchartsModule,
 } from 'ng-apexcharts';
+import { MemberService } from 'src/services/member.service';
 
-
-interface month {
-  value: string;
-  viewValue: string;
-}
-
-export interface profitExpanceChart {
+interface profitExpanceChart {
   series: ApexAxisChartSeries;
   chart: ApexChart;
   dataLabels: ApexDataLabels;
@@ -48,92 +41,73 @@ export interface profitExpanceChart {
   imports: [MaterialModule, TablerIconsModule, MatButtonModule, NgApexchartsModule],
   templateUrl: './profit-expenses.component.html',
 })
-export class AppProfitExpensesComponent {
+export class AppProfitExpensesComponent implements OnInit {
 
   @ViewChild('chart') chart: ChartComponent = Object.create(null);
-
   public profitExpanceChart!: Partial<profitExpanceChart> | any;
 
-  months: month[] = [
-    { value: 'mar', viewValue: 'Sep 2024' },
-    { value: 'apr', viewValue: 'Oct 2024' },
-    { value: 'june', viewValue: 'Nov 2024' },
-  ];
+  constructor(private memberService: MemberService) {}
 
+  ngOnInit() {
+    this.memberService.getStudentDistributionByDiploma().subscribe((distribution) => {
+      // Prepare chart data based on the distribution
+      const categories = Object.keys(distribution);
+      const values = Object.values(distribution);
 
-  constructor() {
-
-    // sales overview chart
-    this.profitExpanceChart = {
-      series: [
-        {
-          name: 'Eanings this month',
-          data: [9, 5, 3, 7, 5, 10, 3],
-          color: '#0085db',
+      // Update the chart's x-axis categories and series data
+      this.profitExpanceChart = {
+        series: [
+          {
+            name: 'Number of Students',
+            data: values,
+            color: '#0085db',
+          },
+        ],
+        chart: {
+          type: 'bar',
+          height: 390,
+          offsetY: 10,
+          foreColor: '#adb0bb',
+          fontFamily: 'inherit',
+          toolbar: { show: false },
         },
-        {
-          name: 'Expense this month',
-          data: [6, 3, 9, 5, 4, 6, 4],
-          color: '#fb977d',
+        grid: {
+          borderColor: 'rgba(0,0,0,0.1)',
+          strokeDashArray: 3,
         },
-      ],
-
-      grid: {
-        borderColor: 'rgba(0,0,0,0.1)',
-        strokeDashArray: 3,
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: '30%',
-          borderRadius: 4,
-          endingShape: "rounded",
-        },
-      },
-      chart: {
-        type: 'bar',
-        height: 390,
-        offsetY: 10,
-        foreColor: '#adb0bb',
-        fontFamily: 'inherit',
-        toolbar: { show: false },
-      },
-      dataLabels: { enabled: false },
-      markers: { size: 0 },
-      legend: { show: false },
-      xaxis: {
-        type: 'category',
-        categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        axisTicks: {
-          show: false,
-        },
-        axisBorder: {
-          show: false,
-        },
-        labels: {
-          style: { cssClass: 'grey--text lighten-2--text fill-color' },
-        },
-      },
-      stroke: {
-        show: true,
-        width: 5,
-        colors: ['transparent'],
-      },
-      tooltip: { theme: 'light' },
-
-      responsive: [
-        {
-          breakpoint: 600,
-          options: {
-            plotOptions: {
-              bar: {
-                borderRadius: 3,
-              },
-            },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: '30%',
+            borderRadius: 4,
+            endingShape: "rounded",
           },
         },
-      ],
-    };
-
+        dataLabels: { enabled: false },
+        markers: { size: 0 },
+        legend: { show: false },
+        xaxis: {
+          type: 'category',
+          categories: categories, // Dynamically populate categories
+          axisTicks: { show: false },
+          axisBorder: { show: false },
+          labels: { style: { cssClass: 'grey--text lighten-2--text fill-color' } },
+        },
+        stroke: {
+          show: true,
+          width: 5,
+          colors: ['transparent'],
+        },
+        tooltip: { theme: 'light' },
+        responsive: [
+          {
+            breakpoint: 600,
+            options: {
+              plotOptions: { bar: { borderRadius: 3 } },
+            },
+          },
+        ],
+      };
+    });
   }
 }
