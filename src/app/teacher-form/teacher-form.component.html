@@ -75,21 +75,50 @@
       <!-- Grade Field -->
       <mat-form-field class="w-100" appearance="outline">
         <mat-label>Grade</mat-label>
-        <input
-          matInput
-          formControlName="grade"
-          placeholder="Insert your grade here"
-        />
+        <mat-select formControlName="grade" placeholder="Select your grade">
+          <mat-option value="Professor">Professor</mat-option>
+          <mat-option value="Maître de Conférences"
+            >Maître de Conférences</mat-option
+          >
+          <mat-option value="Maître Assistant">Maître Assistant</mat-option>
+          <mat-option value="Assistant">Assistant</mat-option>
+          <mat-option value="Doctorant">Doctorant</mat-option>
+        </mat-select>
       </mat-form-field>
 
       <!-- Etablissement Field -->
       <mat-form-field class="w-100" appearance="outline">
         <mat-label>Etablissement</mat-label>
-        <input
-          matInput
+        <mat-select
           formControlName="etablissement"
-          placeholder="Insert your establishment here"
-        />
+          placeholder="Select your establishment"
+        >
+          <mat-option value="ENIT"
+            >École Nationale d'Ingénieurs de Tunis (ENIT)</mat-option
+          >
+          <mat-option value="ENSI"
+            >École Nationale des Sciences de l'Informatique (ENSI)</mat-option
+          >
+          <mat-option value="ENIG"
+            >École Nationale d'Ingénieurs de Gabès (ENIG)</mat-option
+          >
+          <mat-option value="ENIS"
+            >École Nationale d'Ingénieurs de Sfax (ENIS)</mat-option
+          >
+          <mat-option value="ENIM"
+            >École Nationale d'Ingénieurs de Monastir (ENIM)</mat-option
+          >
+          <mat-option value="ENIB"
+            >École Nationale d'Ingénieurs de Bizerte (ENIB)</mat-option
+          >
+          <mat-option value="ENISO"
+            >École Nationale d'Ingénieurs de Sousse (ENISO)</mat-option
+          >
+          <mat-option value="INSAT"
+            >Institut National des Sciences Appliquées et de Technologie
+            (INSAT)</mat-option
+          >
+        </mat-select>
       </mat-form-field>
 
       <!-- Submit Button -->

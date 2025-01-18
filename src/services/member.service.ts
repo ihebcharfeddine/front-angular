@@ -37,7 +37,7 @@ export class MemberService {
 
   // Get a full member by ID
   getFullMember(id: number): Observable<Member> {
-    return this.httpClient.get<Member>(`${this.baseUrl}/${id}`);
+    return this.httpClient.get<Member>(`http://localhost:9000/MEMBRE-SERVICE/fullmember/${id}`);
   }
 
   SaveEtudiant(etudiant: Member): Observable<void> {

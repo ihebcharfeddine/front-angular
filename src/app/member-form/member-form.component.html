@@ -91,11 +91,12 @@
       <!-- Diplome Field -->
       <mat-form-field class="w-100" appearance="outline">
         <mat-label>Diplome</mat-label>
-        <input
-          matInput
-          formControlName="diplome"
-          placeholder="Insert your diploma here"
-        />
+        <mat-select formControlName="diplome" placeholder="Select your diploma">
+          <mat-option value="Ingenieur">Ingénieur</mat-option>
+          <mat-option value="Licence">Licence</mat-option>
+          <mat-option value="Mastere">Mastère</mat-option>
+          <mat-option value="Doctora">Doctorat</mat-option>
+        </mat-select>
       </mat-form-field>
 
       <!-- Submit Button -->
