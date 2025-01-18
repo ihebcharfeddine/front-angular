@@ -1,4 +1,11 @@
 <mat-card class="cardWithShadow">
+    <div class="search-container" style="margin-top: 16px; margin-left:10px; display: flex; align-items: center;">
+        <mat-form-field appearance="outline" style="width: 300px; margin-right: 16px;">
+          <mat-label>Search Teacher</mat-label>
+          <mat-icon matPrefix>search</mat-icon>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Type to search..." />
+        </mat-form-field>
+      </div>
     <mat-card-header class="p-t-24">
         <div class="d-flex align-items-center justify-content-between w-100">
             <mat-card-title>Teacher List</mat-card-title>

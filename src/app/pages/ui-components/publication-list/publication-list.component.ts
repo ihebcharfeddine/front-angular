@@ -54,6 +54,34 @@ export class PublicationListComponent {
   OpenDialog() {
     this.router.navigate(['/ui-components/publications/affPub']);
   }
+
+  applyFilter(event: KeyboardEvent) {
+    const filterValue = (event.target as HTMLInputElement).value
+      .trim()
+      .toLowerCase();
+    if (filterValue.length === 0) {
+      console.log('No filter value entered, fetching all events.');
+      this.PS.getAllPublications().subscribe(
+        (data) => {
+          this.dataSource = data;
+        },
+        (error) => {
+          console.error('Error fetching all events:', error);
+        }
+      );
+      return;
+    }
+
+    this.PS.getPublicationsByTitle(filterValue).subscribe(
+      (filteredData) => {
+        this.dataSource = filteredData;
+      },
+      (error) => {
+        console.error('Error fetching filtered events:', error);
+      }
+    );
+  }
+
   delete(id: number) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '350px',

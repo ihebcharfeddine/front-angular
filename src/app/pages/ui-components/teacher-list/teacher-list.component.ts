@@ -55,6 +55,33 @@ export class TeacherListComponent {
     this.router.navigate(['/ui-components/teachers/create']);
   }
 
+  applyFilter(event: KeyboardEvent) {
+    const filterValue = (event.target as HTMLInputElement).value
+      .trim()
+      .toLowerCase();
+    if (filterValue.length === 0) {
+      console.log('No filter value entered, fetching all events.');
+      this.MS.getAllTeachers().subscribe(
+        (data) => {
+          this.dataSource = data;
+        },
+        (error) => {
+          console.error('Error fetching all events:', error);
+        }
+      );
+      return;
+    }
+
+    this.MS.getTeachersByTitle(filterValue).subscribe(
+      (filteredData) => {
+        this.dataSource = filteredData;
+      },
+      (error) => {
+        console.error('Error fetching filtered events:', error);
+      }
+    );
+  }
+
   delete(id: string) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '350px',

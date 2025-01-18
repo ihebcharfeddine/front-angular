@@ -37,7 +37,9 @@ export class MemberService {
 
   // Get a full member by ID
   getFullMember(id: number): Observable<Member> {
-    return this.httpClient.get<Member>(`http://localhost:9000/MEMBRE-SERVICE/fullmember/${id}`);
+    return this.httpClient.get<Member>(
+      `http://localhost:9000/MEMBRE-SERVICE/fullmember/${id}`
+    );
   }
 
   SaveEtudiant(etudiant: Member): Observable<void> {
@@ -91,6 +93,25 @@ export class MemberService {
     );
   }
 
+  getStudentsByTitle(titre: string): Observable<Member[]> {
+    return this.getAllStudents().pipe(
+      map((members) =>
+        members.filter((student) =>
+          student.nom.toLowerCase().includes(titre.toLowerCase())
+        )
+      )
+    );
+  }
+
+  getTeachersByTitle(titre: string): Observable<Member[]> {
+    return this.getAllTeachers().pipe(
+      map((members) =>
+        members.filter((teacher) =>
+          teacher.nom.toLowerCase().includes(titre.toLowerCase())
+        )
+      )
+    );
+  }
   tabpub: number[] = [];
 
   async getNbStudByTeacher() {
