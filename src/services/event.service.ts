@@ -31,4 +31,8 @@ export class EventService {
   updateEvent(id: number, event: Event): Observable<void> {
     return this.http.put<void>(`${this.baseUrl}/${id}`, event);
   }
+
+  getEventsByTitle(title: string): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.baseUrl}/${title}`);
+  }
 }
