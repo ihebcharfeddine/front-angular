@@ -1,40 +1,13 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { MaterialModule } from 'src/app/material.module';
-import { MatButtonModule } from '@angular/material/button';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { MemberService } from 'src/services/member.service';
+import { ToolService } from 'src/services/tool.service';
+import { PublicationService } from 'src/services/publication.service';
+import { EventService } from 'src/services/event.service';
 
-import {
-  ApexChart,
-  ChartComponent,
-  ApexDataLabels,
-  ApexLegend,
-  ApexStroke,
-  ApexTooltip,
-  ApexAxisChartSeries,
-  ApexXAxis,
-  ApexYAxis,
-  ApexGrid,
-  ApexPlotOptions,
-  ApexFill,
-  ApexMarkers,
-  ApexResponsive,
-  NgApexchartsModule,
-} from 'ng-apexcharts';
-
-export interface productsalesChart {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  yaxis: ApexYAxis;
-  xaxis: ApexXAxis;
-  fill: ApexFill;
-  tooltip: ApexTooltip;
-  stroke: ApexStroke;
-  legend: ApexLegend;
-  grid: ApexGrid;
-  marker: ApexMarkers;
-}
 
 @Component({
   selector: 'app-product-sales',
@@ -42,15 +15,52 @@ export interface productsalesChart {
   imports: [MaterialModule, TablerIconsModule, MatButtonModule, NgApexchartsModule],
   templateUrl: './product-sales.component.html',
 })
-export class AppProductSalesComponent {
+export class AppProductSalesComponent implements OnInit {
 
-  @ViewChild('chart') chart: ChartComponent = Object.create(null);
+  @ViewChild('chart') chart: any;
 
-  public productsalesChart!: Partial<productsalesChart> | any;
+  public productsalesChart: any;
+  
+  public memberCount: number = 0;
+  public toolCount: number = 0;
+  public publicationCount: number = 0;
+  public eventCount: number = 0;
 
+  constructor(
+    private memberService: MemberService,
+    private toolService: ToolService,
+    private publicationService: PublicationService,
+    private eventService: EventService
+  ) {}
 
-  constructor() {
+  ngOnInit(): void {
+    this.fetchStatistics();
+    this.initializeChart();
+  }
 
+  fetchStatistics(): void {
+    // Fetch number of members (students + teachers)
+    this.memberService.getNumberOfStudents().subscribe((studentsCount) => {
+      this.memberCount = studentsCount;
+    });
+
+    // Fetch number of tools
+    this.toolService.getAllTools().subscribe((tools) => {
+      this.toolCount = tools.length;
+    });
+
+    // Fetch number of publications
+    this.publicationService.getAllPublications().subscribe((publications) => {
+      this.publicationCount = publications.length;
+    });
+
+    // Fetch number of events
+    this.eventService.getAllEvents().subscribe((events) => {
+      this.eventCount = events.length;
+    });
+  }
+
+  initializeChart(): void {
     this.productsalesChart = {
       series: [
         {
@@ -59,7 +69,6 @@ export class AppProductSalesComponent {
           data: [25, 66, 20, 40, 12, 58, 20],
         },
       ],
-
       chart: {
         type: 'area',
         fontFamily: "'Plus Jakarta Sans', sans-serif;",
@@ -92,6 +101,5 @@ export class AppProductSalesComponent {
         },
       },
     };
-
   }
 }

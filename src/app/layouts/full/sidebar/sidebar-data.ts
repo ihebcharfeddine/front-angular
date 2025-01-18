@@ -26,13 +26,13 @@ export const navItems: NavItem[] = [
     route: '/ui-components/teachers',
   },
   {
-    displayName: 'PublicationsList',
+    displayName: 'Publications',
     iconName: 'layout-navbar-expand',
     bgcolor: 'primary',
     route: '/ui-components/publications',
   },
   {
-    displayName: 'EventsList',
+    displayName: 'Events',
     iconName: 'list',
     bgcolor: 'primary',
     route: '/ui-components/events',
